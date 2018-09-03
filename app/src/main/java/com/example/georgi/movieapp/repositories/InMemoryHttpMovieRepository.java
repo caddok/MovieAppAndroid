@@ -21,26 +21,33 @@ public class InMemoryHttpMovieRepository implements Repository<Movie> {
     }
     @Override
     public List<Movie> getAll() throws IOException {
-        return null;
+        String moviesJson = mHttpRequester.get(mServerUrl);
+        return mJsonParser.fromJsonArray(moviesJson);
     }
 
     @Override
     public Movie add(Movie item) throws IOException {
-        return null;
+        String requestBody = mJsonParser.toJson(item);
+        String responseBody = mHttpRequester.post(mServerUrl,requestBody);
+        return mJsonParser.fromJson(responseBody);
     }
 
     @Override
-    public Movie getById(int mSuperheroId) throws IOException {
-        return null;
+    public Movie getById(int movieId) throws IOException {
+        String url = mServerUrl + "/" + movieId;
+        String responseBody = mHttpRequester.get(url);
+        return mJsonParser.fromJson(responseBody);
     }
 
     @Override
     public void deleteById(int id) throws IOException {
-
+        List<Movie> allMovies = getAll();
+        allMovies.remove(id);
     }
 
     @Override
-    public void update(int id, Movie item) {
-
+    public void update(int id, Movie item) throws IOException {
+        List<Movie> allMovies = getAll();
+        allMovies.set(id,item);
     }
 }

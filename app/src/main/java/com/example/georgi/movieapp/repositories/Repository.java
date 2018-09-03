@@ -13,5 +13,5 @@ public interface Repository<T> {
 
     void deleteById(int id) throws IOException;
 
-    void update(int id, T item);
+    void update(int id, T item) throws IOException;
 }
