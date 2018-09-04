@@ -1,7 +1,10 @@
 package com.example.georgi.movieapp.diconfig;
 
+import com.example.georgi.movieapp.views.views.movielist.MovieListPresenter;
+import com.example.georgi.movieapp.views.views.movielist.MoviesListContracts;
 import com.example.georgi.movieapp.views.views.start.StartActivityFragment;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -12,7 +15,7 @@ public abstract class StartModule {
     abstract StartActivityFragment aboutTheAppFragment();
 
 
-//    @ActivityScoped
-//    @Binds
-//    abstract SuperheroesCreateContracts.Presenter createPresenter(SuperheroesCreatePresenter presenter);
+    @ActivityScoped
+    @Binds
+    abstract MoviesListContracts.Presenter listPresenter(MovieListPresenter presenter);
 }

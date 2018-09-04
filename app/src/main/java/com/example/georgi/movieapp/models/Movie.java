@@ -1,6 +1,8 @@
 package com.example.georgi.movieapp.models;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     public int id;
     public String name;
