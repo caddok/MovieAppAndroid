@@ -4,17 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.views.movielist.MoviesList">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-    </RelativeLayout>
+    tools:context=".views.views.start.StartActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.georgi.movieapp.showmovies;
+package com.example.georgi.movieapp.views.views.moviedetails;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.example.georgi.movieapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MoviesListFragment extends Fragment {
+public class MovieDetailsFragment extends Fragment {
 
 
-    public MoviesListFragment() {
+    public MovieDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class MoviesListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies_list, container, false);
+        return inflater.inflate(R.layout.fragment_movie_details, container, false);
     }
 
 }

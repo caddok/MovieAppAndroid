@@ -16,7 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".showmovies.MoviesList"></activity>
+        <activity android:name=".views.views.movielist.MoviesList" />
+        <activity android:name=".views.views.start.StartActivity" />
+        <activity android:name=".views.views.moviedetails.MovieDetails" />
+        <activity android:name=".views.views.about.AboutTheApp"></activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
