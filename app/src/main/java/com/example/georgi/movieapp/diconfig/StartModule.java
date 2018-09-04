@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.diconfig;
 
-import com.example.georgi.movieapp.views.views.about.AboutTheAppFragment;
 import com.example.georgi.movieapp.views.views.start.StartActivityFragment;
 
 import dagger.Module;
@@ -12,8 +11,8 @@ public abstract class StartModule {
     @ContributesAndroidInjector
     abstract StartActivityFragment aboutTheAppFragment();
 
-    //TODO:Add presenter for the activity
-    /*@ActivityScoped
-    @Binds
-    abstract Presenter aboutTheAppFragment();*/
+
+//    @ActivityScoped
+//    @Binds
+//    abstract SuperheroesCreateContracts.Presenter createPresenter(SuperheroesCreatePresenter presenter);
 }
