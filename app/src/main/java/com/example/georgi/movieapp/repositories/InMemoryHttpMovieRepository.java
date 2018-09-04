@@ -12,6 +12,7 @@ public class InMemoryHttpMovieRepository implements Repository<Movie> {
     private final JsonParser<Movie> mJsonParser;
     private String mServerUrl;
 
+
     public InMemoryHttpMovieRepository(String serverUrl,
                           HttpRequester httpRequester,
                           JsonParser<Movie> jsonParser) {
