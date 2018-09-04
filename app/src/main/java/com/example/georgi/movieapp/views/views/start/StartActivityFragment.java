@@ -73,10 +73,15 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
         //TODO
     }
 
-    @OnClick(R.id.btn_start)
-    public void onClick(){
+    @Override
+    public void navigateToNext() {
         Intent intent = new Intent(getContext(), MoviesList.class);
 
         startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_start)
+    public void onClick(){
+        mPresenter.allowNavigation();
     }
 }

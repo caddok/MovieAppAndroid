@@ -2,6 +2,8 @@ package com.example.georgi.movieapp.async;
 
 import com.example.georgi.movieapp.async.base.SchedulerProvider;
 
+import javax.inject.Inject;
+
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -9,7 +11,8 @@ import io.reactivex.schedulers.Schedulers;
 public class AsyncSchedulerProvider implements SchedulerProvider {
     private static SchedulerProvider instance;
 
-    private AsyncSchedulerProvider() {
+    @Inject
+    public AsyncSchedulerProvider() {
 
     }
 

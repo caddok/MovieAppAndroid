@@ -8,10 +8,14 @@ public interface MovieStartContracts {
         void showLoading();
 
         void hideLoading();
+
+        void navigateToNext();
     }
 
     interface Presenter{
         void subscribeToView(View view);
+
+        void allowNavigation();
     }
 
 }
