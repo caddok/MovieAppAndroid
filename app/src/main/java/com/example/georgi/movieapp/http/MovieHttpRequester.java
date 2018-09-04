@@ -46,4 +46,40 @@ public class MovieHttpRequester implements HttpRequester {
         String responseBody = response.body().string();
         return responseBody;
     }
+
+    @Override
+    public String delete(String url, int id) throws IOException {
+        Request request = new Request.Builder()
+                .delete()
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request)
+                .execute();
+
+        String responseBody = response.body().string();
+
+        return responseBody;
+    }
+
+    @Override
+    public String update(String url, String body, int id) throws IOException {
+        RequestBody bodyString = RequestBody.create(
+                MediaType.parse("application/json"),
+                body
+        );
+
+        Request request = new Request.Builder()
+                .put(bodyString)
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request)
+                .execute();
+
+        String responseBody = response.body().string();
+        return responseBody;
+    }
 }

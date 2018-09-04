@@ -2,22 +2,24 @@ package com.example.georgi.movieapp.models;
 
 public class Movie {
 
-    private int id;
-    private String name;
-    private int year;
-    private double rating;
-    private int duration;
-    private String imgUrl;
-    private String movieDescription;
+    public int id;
+    public String name;
+    public String genre;
+    public int year;
+    public double rating;
+    public int duration;
+    public String imgUrl;
+    public String movieDescription;
 
 
     public Movie(){
         //default
     }
 
-    public Movie(int id, String name, int year, double rating, int duration, String imgUrl, String movieDescription){
+    public Movie(int id, String name, String genre, int year, double rating, int duration, String imgUrl, String movieDescription){
         this.id = id;
         this.name = name;
+        this.genre = genre;
         this.year = year;
         this.rating = rating;
         this.duration = duration;
@@ -79,5 +81,13 @@ public class Movie {
 
     public void setMovieDescription(String movieDescription) {
         this.movieDescription = movieDescription;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

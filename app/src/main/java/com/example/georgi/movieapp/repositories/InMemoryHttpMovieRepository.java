@@ -21,14 +21,16 @@ public class InMemoryHttpMovieRepository implements Repository<Movie> {
     }
     @Override
     public List<Movie> getAll() throws IOException {
-        String moviesJson = mHttpRequester.get(mServerUrl);
+        String mServerUrlGet = mServerUrl + "/get";
+        String moviesJson = mHttpRequester.get(mServerUrlGet);
         return mJsonParser.fromJsonArray(moviesJson);
     }
 
     @Override
     public Movie add(Movie item) throws IOException {
         String requestBody = mJsonParser.toJson(item);
-        String responseBody = mHttpRequester.post(mServerUrl,requestBody);
+        String mServerUrlPost = mServerUrl + "/new";
+        String responseBody = mHttpRequester.post(mServerUrlPost,requestBody);
         return mJsonParser.fromJson(responseBody);
     }
 
@@ -40,14 +42,16 @@ public class InMemoryHttpMovieRepository implements Repository<Movie> {
     }
 
     @Override
-    public void deleteById(int id) throws IOException {
-        List<Movie> allMovies = getAll();
-        allMovies.remove(id);
+    public Movie deleteById(int id) throws IOException {
+        String mServerUrlDelete = mServerUrl + "/remove/" + id;
+        String json = mHttpRequester.delete(mServerUrlDelete,id);
+        return mJsonParser.fromJson(json);
     }
 
     @Override
     public void update(int id, Movie item) throws IOException {
-        List<Movie> allMovies = getAll();
-        allMovies.set(id,item);
+        String requestBody = mJsonParser.toJson(item);
+        String mServerUrlPut = mServerUrl + "/update/" + id;
+        String responseBody = mHttpRequester.update(mServerUrlPut, requestBody, id);
     }
 }
