@@ -46,11 +46,13 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
 
     //Custom progress bar
-    compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
+    implementation 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
 
     implementation("com.mikepenz:materialdrawer:6.0.9@aar") {
         transitive = true
     }
+
+    implementation 'com.github.clans:fab:1.6.4'
 
 
 }

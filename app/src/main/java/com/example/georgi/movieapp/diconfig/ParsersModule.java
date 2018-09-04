@@ -9,8 +9,9 @@ import dagger.Provides;
 
 @Module
 public class ParsersModule {
+
     @Provides
     public JsonParser<Movie> movieJsonParser() {
-        return new GsonJsonParser<>(Movie.class,Movie[].class);
+        return new GsonJsonParser<Movie>(Movie.class,Movie[].class);
     }
 }

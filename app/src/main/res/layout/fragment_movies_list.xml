@@ -21,9 +21,15 @@
             android:layout_height="250dp"
             android:background="@color/background"
             android:layout_centerInParent="true"/>
+<<<<<<< HEAD
             <!--android:animCircleLoadingView_mainColor="@color/main_color"
             android:animCircleLoadingView_secondaryColor="@color/secondary_color"
             android:animCircleLoadingView_textColor="@android:color/white" -->
+=======
+            <!--app:animCircleLoadingView_mainColor="@color/main_color"-->
+            <!--app:animCircleLoadingView_secondaryColor="@color/secondary_color"-->
+            <!--app:animCircleLoadingView_textColor="@android:color/white" />-->
+>>>>>>> 4497152b9e752c68f9f0e40acd781f19c91dea09
 
         <ListView
             android:layout_below="@id/et_search"

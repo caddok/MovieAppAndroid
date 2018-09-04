@@ -13,6 +13,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
+        AdapterModule.class,
         AsyncModule.class,
         ServiceModule.class,
         HttpModule.class,
@@ -20,6 +21,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ApplicationModule.class,
         ParsersModule.class,
         RepositoriesModule.class,
+        ActivityBindingModule.class,
+        ApplicationModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<MovieApplication> {
     @Component.Builder

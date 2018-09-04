@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:btn_start="http://schemas.android.com/apk/res-auto"
     tools:context=".views.views.start.StartActivityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ImageView
+        android:id="@+id/iv_start_curtains"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scaleType="fitXY"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
-</FrameLayout>
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/btn_start"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:src="@drawable/play_icon"
+        android:background="@color/colorGrey"/>
+        <!--btn_start:btn_colorNormal="@color/colorGrey"-->
+        <!--btn_start:btn_colorPressed="@color/colorWhiteGrey"-->
+        <!--btn_start:btn_colorRipple="@color/colorPrimary" />-->
+
+
+
+</RelativeLayout>
