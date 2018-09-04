@@ -3,7 +3,6 @@
     package="com.example.georgi.movieapp">
 
     <application
-        android:name=".MovieApplication"
         android:allowBackup="true"
         android:name=".MovieApplication"
         android:icon="@mipmap/ic_launcher"
