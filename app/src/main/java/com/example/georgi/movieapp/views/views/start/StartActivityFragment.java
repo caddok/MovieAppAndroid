@@ -26,7 +26,7 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
     @BindView(R.id.iv_start_curtains)
     ImageView mImageViewStart;
 
-    @BindView(R.id.btn_start)
+    @BindView(R.id.fab)
     FloatingActionButton mStartButton;
 
 
@@ -80,7 +80,7 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_start)
+    @OnClick(R.id.fab)
     public void onClick(){
         mPresenter.allowNavigation();
     }

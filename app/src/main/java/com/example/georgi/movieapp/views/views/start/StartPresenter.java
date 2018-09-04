@@ -8,7 +8,8 @@ public class StartPresenter implements MovieStartContracts.Presenter {
 
 
     @Inject
-    public StartPresenter(){
+    StartPresenter(){
+
     }
 
     @Override

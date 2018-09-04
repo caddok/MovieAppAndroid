@@ -7,7 +7,9 @@ import com.example.georgi.movieapp.R;
 
 import javax.inject.Inject;
 
-public class StartActivity extends AppCompatActivity {
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class StartActivity extends DaggerAppCompatActivity {
     public static final long IDENTIFIER = 340;
 
     @Inject
