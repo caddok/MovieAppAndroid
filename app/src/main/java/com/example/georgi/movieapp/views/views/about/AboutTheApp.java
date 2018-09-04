@@ -13,10 +13,12 @@ public class AboutTheApp extends BaseDrawer {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_the_app);
+        setSupportActionBar(getToolbar());
 
     }
 

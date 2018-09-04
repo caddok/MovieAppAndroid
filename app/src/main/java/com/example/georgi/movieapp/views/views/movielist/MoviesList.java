@@ -31,7 +31,6 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     SuperheroDetailsPresenter mSuperheroDetailsPresenter;
 */
 
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -39,6 +38,8 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_list);
+
+        setSupportActionBar(getToolbar());
 
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);

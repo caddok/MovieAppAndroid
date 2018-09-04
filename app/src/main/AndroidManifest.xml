@@ -3,13 +3,14 @@
     package="com.example.georgi.movieapp">
 
     <application
+        android:name=".MovieApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MovieApplication">
+        <activity android:name=".views.views.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,9 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.views.movielist.MoviesList" />
-        <activity android:name=".views.views.start.StartActivity" />
         <activity android:name=".views.views.moviedetails.MovieDetails" />
-        <activity android:name=".views.views.about.AboutTheApp"></activity>
+        <activity android:name=".views.views.about.AboutTheApp" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
