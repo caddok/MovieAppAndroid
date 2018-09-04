@@ -1,8 +1,11 @@
 package com.example.georgi.movieapp.diconfig;
 
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsFragment;
+import com.example.georgi.movieapp.views.views.movielist.MovieListPresenter;
+import com.example.georgi.movieapp.views.views.movielist.MoviesListContracts;
 import com.example.georgi.movieapp.views.views.movielist.MoviesListFragment;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -12,8 +15,8 @@ public abstract class MoviesListModule {
     @ContributesAndroidInjector
     abstract MoviesListFragment moviesListFragment();
 
-    //TODO:Add presenter for the activity
-    /*@ActivityScoped
+    @ActivityScoped
     @Binds
-    abstract MovieListFragment aboutTheAppFragment();*/
+    abstract MoviesListContracts.Presenter listPresenter(MovieListPresenter presenter);
+
 }

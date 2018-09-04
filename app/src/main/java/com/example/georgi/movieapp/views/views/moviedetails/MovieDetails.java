@@ -11,6 +11,8 @@ import butterknife.BindView;
 
 public class MovieDetails extends BaseDrawer {
     public static final long IDENTIFIER = 651;
+    public static final String EXTRA_KEY = "details";
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 

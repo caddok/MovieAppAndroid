@@ -5,10 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".views.views.movielist.MoviesListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <EditText
+            android:hint="@string/movie_search_hint"
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circle_loading_view"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@color/background"
+            android:layout_centerInParent="true"
+            app:animCircleLoadingView_mainColor="@color/main_color"
+            app:animCircleLoadingView_secondaryColor="@color/secondary_color"
+            app:animCircleLoadingView_textColor="@android:color/white" />
+
+        <ListView
+            android:layout_below="@id/et_search"
+            android:id="@+id/lv_movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
 
 </FrameLayout>
