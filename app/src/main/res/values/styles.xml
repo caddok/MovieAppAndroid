@@ -12,4 +12,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="CustomRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#CDC9C9</item>
+        <item name="colorControlActivated">#FFD700</item>
+    </style>
+
 </resources>

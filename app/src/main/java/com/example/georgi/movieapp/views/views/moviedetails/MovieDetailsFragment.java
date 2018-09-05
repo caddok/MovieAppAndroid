@@ -3,6 +3,9 @@ package com.example.georgi.movieapp.views.views.moviedetails;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +25,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailsFragment extends Fragment implements MovieDetailsContracts.View {
+public class MovieDetailsFragment extends Fragment implements MovieDetailsContracts.View, RatingBar.OnRatingBarChangeListener {
     @BindView(R.id.iv_movie_poster)
     ImageView mMoviePosterImageView;
 
@@ -50,7 +55,11 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     @BindView(R.id.loading)
     ProgressBar mLoadingView;
 
+    @BindView(R.id.rating_bar)
+    RatingBar mRatingBar;
+
     private MovieDetailsContracts.Presenter mPresenter;
+    private Movie mMovie;                                //
     private static final String SHOW_ERROR = "Error: ";
 
 
@@ -64,6 +73,9 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
         ButterKnife.bind(this,view);
+
+        mRatingBar.setOnRatingBarChangeListener(this);
+
         return view;
     }
 
@@ -79,14 +91,15 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
         Picasso.get()
                 .load(movie.getImgUrl())
                 .into(mMoviePosterImageView);
-        mTitleTextView.setText(movie.getName());
+        mTitleTextView.setText(movie.getName().toUpperCase());
         mGenreTextView.setText(movie.getGenre());
-        String duration = "" + movie.getDuration();
+        String duration = "" + movie.getDuration() + " minutes";
         mDurationTextView.setText(duration);
         String year = String.valueOf(movie.getYear());
-        mYearTextView.setText(year);
+        mYearTextView.setText("Premiere " + year);
         String rating = String.valueOf(movie.getRating());
-        mMovieRatingTextView.setText(rating);
+        rating = rating.substring(0, 3);
+        mMovieRatingTextView.setText("Vote - " + rating);
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         mDescriptionTextView.setText(movie.getMovieDescription());
     }
@@ -124,5 +137,28 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
         mDurationTextView.setVisibility(View.VISIBLE);
         mMovieRatingTextView.setVisibility(View.VISIBLE);
         mDescriptionTextView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setMovie(Movie movie) {       //
+        this.mMovie = movie;
+    }
+
+    @Override
+    public void showUpdate(Movie movie) {                 //
+        Toast.makeText(getContext(),
+                "You have voted for " + movie.getName() + " !", Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        rating = mRatingBar.getRating();
+        Movie movie = mMovie;
+        movie.setVotes(movie.getVotes() + 1);
+        movie.setVoteSum(movie.getVoteSum() + rating);
+        movie.setRating(movie.getVoteSum() / movie.getVotes());
+
+        mPresenter.updateMovie(movie);
     }
 }

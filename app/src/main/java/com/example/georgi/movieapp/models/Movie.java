@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Movie implements Serializable {
 
     public int id;
+    public double voteSum;               //
+    public int votes;                    //
     public String name;
     public String genre;
     public int year;
@@ -18,15 +20,31 @@ public class Movie implements Serializable {
         //default
     }
 
-    public Movie(int id, String name, String genre, int year, double rating, int duration, String imgUrl, String movieDescription){
+    public Movie(int id, double voteSum, int votes, String name, String genre, int year, int duration, String imgUrl, String movieDescription){
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.year = year;
-        this.rating = rating;
+        this.rating = voteSum/votes;
         this.duration = duration;
         this.imgUrl = imgUrl;
         this.movieDescription = movieDescription;
+    }
+
+    public double getVoteSum() {
+        return voteSum;
+    }
+
+    public void setVoteSum(double voteSum) {
+        this.voteSum = voteSum;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 
     public int getId() {

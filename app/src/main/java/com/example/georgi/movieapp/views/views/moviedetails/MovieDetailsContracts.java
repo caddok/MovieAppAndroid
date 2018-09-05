@@ -13,11 +13,17 @@ public interface MovieDetailsContracts {
         void showLoading();
 
         void hideLoading();
+
+        void setMovie(Movie movie);   //
+
+        void showUpdate(Movie movie);       //
     }
     interface Presenter{
         void subscribe(View view);
 
         void loadMovie();
+
+        void updateMovie(Movie movie);    //
 
         void setMovieId(int id);
     }

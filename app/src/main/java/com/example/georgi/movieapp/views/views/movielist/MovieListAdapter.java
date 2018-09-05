@@ -51,10 +51,11 @@ public class MovieListAdapter extends ArrayAdapter<Movie> {
 
         Movie movie = getItem(position);
         mNameTextView.setText(movie.getName());
-        String movieYear = "" + movie.getYear();           //
+        String movieYear = "" + movie.getYear();
         mYearTextView.setText(movieYear);
-        String movieRating = "" + movie.getRating();
-        mRatingTextView.setText(movieRating);
+        String rating = String.valueOf(movie.getRating());
+        rating = rating.substring(0, 3);
+        mRatingTextView.setText(rating);
 
         return view;
 
