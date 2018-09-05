@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.views.views.movielist;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,13 +23,10 @@ import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 
 public class MoviesListFragment extends Fragment implements
-        MoviesListContracts.View{
+        MoviesListContracts.View {
     private static final String NO_MOVIES_FOUND = "No movies were found";
     @BindView(R.id.lv_movies)
     ListView mMovieListView;
-
-//    @BindView(R.id.circle_loading_view)
-//    AnimatedCircleLoadingView mLoadingView;
 
     @BindView(R.id.et_search)
     EditText mSearchEditText;
@@ -93,12 +89,12 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showLoading() {
-        //mLoadingView.startDeterminate();
+
     }
 
     @Override
     public void hideLoading() {
-        //mLoadingView.stopOk();
+
     }
 
     @Override

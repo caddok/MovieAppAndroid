@@ -48,6 +48,9 @@ dependencies {
     //Custom progress bar
     implementation 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     implementation("com.mikepenz:materialdrawer:6.0.9@aar") {
         transitive = true
     }

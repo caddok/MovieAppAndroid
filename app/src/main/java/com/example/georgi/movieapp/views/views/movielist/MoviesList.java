@@ -9,6 +9,8 @@ import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.models.Movie;
 import com.example.georgi.movieapp.utils.navigation.navigation.BaseDrawer;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetails;
+import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsFragment;
+import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsPresenter;
 
 import javax.inject.Inject;
 
@@ -23,13 +25,11 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     @Inject
     MoviesListContracts.Presenter mPresenter;
 
-/*
     @Inject
-    SuperheroDetailsFragment mSuperheroDetailsFragment;
+    MovieDetailsFragment mMovieoDetailsFragment;
 
     @Inject
-    SuperheroDetailsPresenter mSuperheroDetailsPresenter;
-*/
+    MovieDetailsPresenter mMovieDetailsPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -38,8 +38,6 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_list);
-
-        setSupportActionBar(getToolbar());
 
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);
