@@ -31,20 +31,17 @@ public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
 
     @Override
     public void loadMovie() {
-        mView.showLoading();
+        //mView.showLoading();
         Disposable disposable = Observable
                 .create((ObservableOnSubscribe<Movie>) emitter -> {
                     Movie movie = mMovieService.getDetailsById(mMovieId);
-                    emitter.onNext(mMovie);
+                    emitter.onNext(movie);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
-                .doFinally(mView::hideLoading)
-                .subscribe(
-                        view -> mView.showMovie(mMovie),
-                        error -> mView.showError(error)
-                );
+                .doOnError(mView::showError)
+                .subscribe(mView::showMovie);
     }
 
     @Override

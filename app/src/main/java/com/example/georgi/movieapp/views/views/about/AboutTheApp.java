@@ -11,14 +11,15 @@ import butterknife.BindView;
 public class AboutTheApp extends BaseDrawer {
     public static final long IDENTIFIER = 20;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_the_app);
 
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
     }
 
     @Override

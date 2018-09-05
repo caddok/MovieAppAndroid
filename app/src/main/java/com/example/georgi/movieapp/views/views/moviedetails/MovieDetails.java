@@ -23,13 +23,15 @@ public class MovieDetails extends BaseDrawer {
     @Inject
     MovieDetailsContracts.Presenter mMovieDetailsPresenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         Intent incoming = getIntent();
         Movie movie = (Movie) incoming.getSerializableExtra(MovieDetails.EXTRA_KEY);

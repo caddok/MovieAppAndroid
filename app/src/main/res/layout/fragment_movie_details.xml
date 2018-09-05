@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/iv_movie_poster"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
@@ -44,7 +45,7 @@
             android:id="@+id/tv_movie_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_year" />
+            android:layout_below="@id/tv_duration" />
 
         <TextView
             android:id="@+id/tv_description"

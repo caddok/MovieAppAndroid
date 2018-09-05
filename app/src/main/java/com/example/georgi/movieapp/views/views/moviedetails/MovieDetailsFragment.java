@@ -53,6 +53,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     private MovieDetailsContracts.Presenter mPresenter;
     private static final String SHOW_ERROR = "Error: ";
 
+
     @Inject
     public MovieDetailsFragment() {
         // Required empty public constructor
@@ -78,10 +79,16 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
         Picasso.get().load(movie.getImgUrl()).into(mMoviePosterImageView);
         mTitleTextView.setText(movie.getName());
         mGenreTextView.setText(movie.getGenre());
-        mYearTextView.setText(movie.getYear());
-        mDurationTextView.setText(movie.getDuration());
+
+        String year = String.valueOf(movie.getYear());
+        mYearTextView.setText(year);
+
+        String duration = String.valueOf(movie.getDuration());
+        mDurationTextView.setText(duration);
+
         String rating = String.valueOf(movie.getRating());
         mMovieRatingTextView.setText(rating);
+
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         mDescriptionTextView.setText(movie.getMovieDescription());
     }
@@ -93,9 +100,10 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), SHOW_ERROR + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),
+                SHOW_ERROR + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
-
+/*
     @Override
     public void showLoading() {
         mLoadingView.setVisibility(View.VISIBLE);
@@ -104,6 +112,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     @Override
     public void hideLoading() {
         mLoadingView.setVisibility(View.GONE);
-    }
+    }*/
 
 }
