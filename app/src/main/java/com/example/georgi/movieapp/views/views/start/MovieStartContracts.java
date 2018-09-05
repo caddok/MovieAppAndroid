@@ -10,12 +10,19 @@ public interface MovieStartContracts {
         void hideLoading();
 
         void navigateToNext();
+
+        void setNavigator(Navigator navigator);
     }
 
     interface Presenter{
         void subscribeToView(View view);
 
         void allowNavigation();
+    }
+
+    interface Navigator{
+
+        void navigatoTo();
     }
 
 }

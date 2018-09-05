@@ -6,6 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.views.start.StartActivityFragment">
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
 
     <ImageView
         android:id="@+id/iv_start_curtains"
@@ -22,27 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="70dp"
         android:src="@drawable/play_icon"
         app:fab_colorNormal="#DA4336"
         app:fab_colorPressed="#E75043"
         app:fab_colorRipple="#99FFFFFF"
-        app:fab_hideAnimation="@anim/fab_scale_down"
-        app:fab_label=""
-        app:fab_progress="0"
         app:fab_progress_backgroundColor="#4D000000"
-        app:fab_progress_color="#FF009688"
-        app:fab_progress_indeterminate="false"
-        app:fab_progress_max="100"
-        app:fab_progress_showBackground="true"
         app:fab_shadowColor="#66000000"
-        app:fab_shadowRadius="4dp"
-        app:fab_shadowXOffset="1dp"
-        app:fab_shadowYOffset="3dp"
-        app:fab_showAnimation="@anim/fab_scale_up"
-        app:fab_showShadow="true"
-        app:fab_size="normal" />
+        app:fab_shadowRadius="10dp"
+        app:fab_showShadow="true" />
 
 
 

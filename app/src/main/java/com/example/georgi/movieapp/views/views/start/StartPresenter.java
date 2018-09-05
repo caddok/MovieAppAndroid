@@ -14,11 +14,13 @@ public class StartPresenter implements MovieStartContracts.Presenter {
 
     @Override
     public void subscribeToView(MovieStartContracts.View view) {
-        mView = view;
+        this.mView = view;
     }
 
     @Override
     public void allowNavigation() {
-        mView.navigateToNext();
+        this.mView.showLoading();        //
+        this.mView.navigateToNext();
+        this.mView.hideLoading();       //
     }
 }

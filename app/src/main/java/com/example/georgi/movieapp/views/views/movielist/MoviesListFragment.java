@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,23 +23,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MoviesListFragment extends Fragment implements
         MoviesListContracts.View{
     private static final String NO_MOVIES_FOUND = "No movies were found";
     @BindView(R.id.lv_movies)
     ListView mMovieListView;
 
-    @BindView(R.id.circle_loading_view)
-    AnimatedCircleLoadingView mLoadingView;
+//    @BindView(R.id.circle_loading_view)
+//    AnimatedCircleLoadingView mLoadingView;
 
     @BindView(R.id.et_search)
     EditText mSearchEditText;
 
     @Inject
     MovieListAdapter mMovieListAdapter;
+
+
 
     private MoviesListContracts.Presenter mPresenter;
     private static final String SHOW_ERROR = "Error: ";
@@ -56,6 +56,8 @@ public class MoviesListFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_movies_list, container, false);
 
         ButterKnife.bind(this,view);
+
+        mMovieListView.setAdapter(mMovieListAdapter);     //
 
         return view;
     }
@@ -79,9 +81,9 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showMovies(List<Movie> moviesList) {
-        mMovieListAdapter.notifyDataSetChanged();
         mMovieListAdapter.clear();
         mMovieListAdapter.addAll(moviesList);
+        mMovieListAdapter.notifyDataSetChanged();  //
     }
 
     @Override
@@ -91,12 +93,12 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showLoading() {
-        mLoadingView.startDeterminate();
+        //mLoadingView.startDeterminate();
     }
 
     @Override
     public void hideLoading() {
-        mLoadingView.stopOk();
+        //mLoadingView.stopOk();
     }
 
     @Override
