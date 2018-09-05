@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import butterknife.OnTextChanged;
 
 public class MoviesListFragment extends Fragment implements
@@ -117,6 +119,12 @@ public class MoviesListFragment extends Fragment implements
     public void onTextChanged() {
         String pattern = mSearchEditText.getText().toString();
         mPresenter.filterMovies(pattern);
+    }
+
+    @OnItemClick(R.id.lv_movies)
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Movie hero = mMovieListAdapter.getItem(position);
+        mPresenter.selectMovie(hero);
     }
 
 }
