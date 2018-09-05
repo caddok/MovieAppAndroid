@@ -1,16 +1,15 @@
 package com.example.georgi.movieapp.views.views.start;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.georgi.movieapp.R;
-import com.example.georgi.movieapp.views.views.movielist.MoviesList;
 import com.github.clans.fab.FloatingActionButton;
 
 import javax.inject.Inject;
@@ -31,6 +30,7 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
 
 
     private MovieStartContracts.Presenter mPresenter;
+    private MovieStartContracts.Navigator mNavigator;
 
 
 
@@ -61,27 +61,19 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
         this.mPresenter = presenter;
     }
 
-    @Override
-    public void showLoading() {
-        mStartButton.setVisibility(View.GONE);
-        //TODO
-    }
-
-    @Override
-    public void hideLoading() {
-        mStartButton.setVisibility(View.VISIBLE);
-        //TODO
-    }
 
     @Override
     public void navigateToNext() {
-        Intent intent = new Intent(getContext(), MoviesList.class);
+        this.mNavigator.navigatoTo();
+    }
 
-        startActivity(intent);
+    @Override
+    public void setNavigator(MovieStartContracts.Navigator navigator) {
+        this.mNavigator = navigator;
     }
 
     @OnClick(R.id.fab)
     public void onClick(){
-        mPresenter.allowNavigation();
+        this.mPresenter.allowNavigation();
     }
 }
