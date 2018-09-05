@@ -28,6 +28,9 @@ public class MovieDetails extends BaseDrawer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
         Intent incoming = getIntent();
         Movie movie = (Movie) incoming.getSerializableExtra(MovieDetails.EXTRA_KEY);
 

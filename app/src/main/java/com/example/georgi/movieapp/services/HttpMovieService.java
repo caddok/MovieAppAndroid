@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HttpMovieService implements MovieService {
-
-
     private final Repository<Movie> mMovieRepository;
 
     public HttpMovieService(Repository<Movie> movieRepository){

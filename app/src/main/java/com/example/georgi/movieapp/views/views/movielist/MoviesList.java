@@ -32,7 +32,12 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_list);
 
+<<<<<<< HEAD
         mToolbar = this.findViewById(R.id.toolbar);
+=======
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+>>>>>>> f8ff8a6e4a3f8af1018ce33f9d1cba2fec28fd9d
 
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);
