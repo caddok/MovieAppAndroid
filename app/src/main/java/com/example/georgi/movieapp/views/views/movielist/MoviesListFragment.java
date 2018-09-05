@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.views.views.movielist;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import butterknife.OnTextChanged;
  * A simple {@link Fragment} subclass.
  */
 public class MoviesListFragment extends Fragment implements
-        MoviesListContracts.View{
+        MoviesListContracts.View, AnimatedCircleLoadingView.AnimationListener {
     private static final String NO_MOVIES_FOUND = "No movies were found";
     @BindView(R.id.lv_movies)
     ListView mMovieListView;
@@ -89,14 +88,17 @@ public class MoviesListFragment extends Fragment implements
         Toast.makeText(getContext(), SHOW_ERROR + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
+    //TODO:Find easier to use loader
     @Override
     public void showLoading() {
         mLoadingView.startDeterminate();
+        mLoadingView.setPercent(10);
+        mLoadingView.setAnimationListener(this);
     }
 
     @Override
     public void hideLoading() {
-        mLoadingView.stopOk();
+        mLoadingView.setAnimationListener(this);
     }
 
     @Override
@@ -115,4 +117,14 @@ public class MoviesListFragment extends Fragment implements
         mPresenter.filterMovies(pattern);
     }
 
+    @Override
+    public void onAnimationEnd(boolean success) {
+        if (success) {
+            mLoadingView.stopOk();
+            mLoadingView.setVisibility(View.INVISIBLE);
+        } else {
+            mLoadingView.stopFailure();
+            mLoadingView.setVisibility(View.INVISIBLE);
+        }
+    }
 }
