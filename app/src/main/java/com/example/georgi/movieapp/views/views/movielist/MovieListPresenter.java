@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.views.views.movielist;
 
-import com.example.georgi.movieapp.async.AsyncSchedulerProvider;
 import com.example.georgi.movieapp.async.base.SchedulerProvider;
 import com.example.georgi.movieapp.models.Movie;
 import com.example.georgi.movieapp.services.MovieService;
@@ -31,7 +30,7 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
 
     @Override
     public void loadMovies() {
-        //mView.showLoading();
+        mView.showLoading();
         Disposable observal = Observable
                 .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
                     List<Movie> movies = mMovieService.getAllMovies();
@@ -40,7 +39,7 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
                 })
                 .subscribeOn(mProvider.background())
                 .observeOn(mProvider.ui())
-                //.doFinally(mView::hideLoading)
+                .doFinally(mView::hideLoading)
                 .subscribe(this::presentMoviesToView,
                         error -> mView.showError(error));
 
@@ -53,7 +52,7 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
 
     @Override
     public void filterMovies(String pattern) {
-        //mView.showLoading();
+        mView.showLoading();
         Disposable disposable = Observable
                 .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
                     List<Movie> movies = mMovieService.getFilteredMovies(pattern);
@@ -62,7 +61,7 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
                 })
                 .subscribeOn(mProvider.background())
                 .observeOn(mProvider.ui())
-                //.doFinally(mView::hideLoading)
+                .doFinally(mView::hideLoading)
                 .subscribe(this::presentMoviesToView,
                         error->mView.showError(error));
     }
