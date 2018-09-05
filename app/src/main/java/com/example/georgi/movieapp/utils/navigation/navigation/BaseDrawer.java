@@ -18,15 +18,17 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseDrawer extends DaggerAppCompatActivity {
+
     private Drawer mDrawer;
 
     public void setupDrawer() {
+
         SecondaryDrawerItem aboutTheAppItem = new SecondaryDrawerItem()
                 .withIdentifier(AboutTheApp.IDENTIFIER)
                 .withName("About");
 
         SecondaryDrawerItem listMoviesItem = new SecondaryDrawerItem()
-                .withIdentifier(AboutTheApp.IDENTIFIER)
+                .withIdentifier(MoviesList.IDENTIFIER)
                 .withName("List of Movies");
 
         //TODO:Future plans for accounts
@@ -46,29 +48,37 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
                         listMoviesItem,
                         aboutTheAppItem
                 )
-                .withOnDrawerItemClickListener((view, position, drawerItem) -> setOnDrawerClickListener(drawerItem))
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(
+                            View view,
+                            int position,
+                            IDrawerItem drawerItem) {
+                        long identifier = drawerItem.getIdentifier();
+
+                        if (getIdentifier() == identifier) {
+                            return false;
+                        }
+
+                        Intent intent = getNextIntent(identifier);
+                        if (intent == null) {
+                            return false;
+                        }
+
+                        startActivity(intent);
+                        return true;
+                    }
+                })
                 .build();
     }
 
-    private boolean setOnDrawerClickListener(IDrawerItem drawerItem) {
-        long identifier = drawerItem.getIdentifier();
-        Intent intent = null;
-        if (getIdentifier() == identifier) {
-            return false;
+    private Intent getNextIntent(long identifier){
+        if(identifier == AboutTheApp.IDENTIFIER) {
+            return new Intent(BaseDrawer.this, AboutTheApp.class);
+        }else if(identifier == MoviesList.IDENTIFIER){
+            return new Intent(BaseDrawer.this, MoviesList.class);
         }
-
-        if (identifier == AboutTheApp.IDENTIFIER) {
-            intent = new Intent(this,AboutTheApp.class);
-        } else if (identifier == MoviesList.IDENTIFIER) {
-            intent = new Intent(this,MoviesList.class);
-        }
-
-        if (intent == null) {
-            return false;
-        }
-
-        startActivity(intent);
-        return true;
+        return null;
     }
 
     @Override
