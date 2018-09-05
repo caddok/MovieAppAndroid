@@ -12,15 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-<<<<<<< HEAD
-
-    <ListView
-        android:id="@+id/lv_movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-=======
->>>>>>> 1f1700029abe71228ffddadd3ee880bc40380353
-
         <ListView
             android:id="@+id/lv_movies"
             android:layout_width="match_parent"
