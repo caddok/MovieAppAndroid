@@ -2,6 +2,7 @@ package com.example.georgi.movieapp.diconfig;
 
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsContracts;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsFragment;
+import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsPresenter;
 
 import dagger.Binds;
 import dagger.Module;
@@ -15,6 +16,6 @@ public abstract class MovieDetailsModule {
 
     @ActivityScoped
     @Binds
-    abstract MovieDetailsContracts.Presenter presenter();
+    abstract MovieDetailsContracts.Presenter presenter(MovieDetailsPresenter presenter);
 }
 

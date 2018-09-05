@@ -93,18 +93,14 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showLoading() {
-        runOnUi(() -> {
             mMovieListView.setVisibility(View.GONE);
             mLoadingView.setVisibility(View.VISIBLE);
-        });
     }
 
     @Override
     public void hideLoading() {
-        runOnUi(() -> {
             mLoadingView.setVisibility(View.GONE);
             mMovieListView.setVisibility(View.VISIBLE);
-        });
     }
 
     @Override
@@ -121,11 +117,6 @@ public class MoviesListFragment extends Fragment implements
     public void onTextChanged() {
         String pattern = mSearchEditText.getText().toString();
         mPresenter.filterMovies(pattern);
-    }
-
-    private void runOnUi(Runnable action) {
-        getActivity()
-                .runOnUiThread(action);
     }
 
 }

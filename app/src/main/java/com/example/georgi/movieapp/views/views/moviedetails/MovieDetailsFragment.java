@@ -98,16 +98,12 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     @Override
     public void showLoading() {
-        runOnUi(() -> mLoadingView.setVisibility(View.VISIBLE));
+        mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        runOnUi(() ->mLoadingView.setVisibility(View.GONE));
+        mLoadingView.setVisibility(View.GONE);
     }
 
-    private void runOnUi(Runnable action) {
-        getActivity()
-                .runOnUiThread(action);
-    }
 }
