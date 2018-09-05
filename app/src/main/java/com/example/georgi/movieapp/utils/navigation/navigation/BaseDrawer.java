@@ -20,7 +20,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 public abstract class BaseDrawer extends DaggerAppCompatActivity {
     private Drawer mDrawer;
 
-    private void setupDrawer() {
+    public void setupDrawer() {
         SecondaryDrawerItem aboutTheAppItem = new SecondaryDrawerItem()
                 .withIdentifier(AboutTheApp.IDENTIFIER)
                 .withName("About");
