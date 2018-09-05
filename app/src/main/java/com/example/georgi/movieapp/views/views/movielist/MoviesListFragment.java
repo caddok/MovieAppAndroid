@@ -93,14 +93,14 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showLoading() {
-            mMovieListView.setVisibility(View.GONE);
-            mLoadingView.setVisibility(View.VISIBLE);
+        mMovieListView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-            mLoadingView.setVisibility(View.GONE);
-            mMovieListView.setVisibility(View.VISIBLE);
+        mLoadingView.setVisibility(View.GONE);
+        mMovieListView.setVisibility(View.VISIBLE);
     }
 
     @Override

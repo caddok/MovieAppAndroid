@@ -2,7 +2,6 @@ package com.example.georgi.movieapp.views.views.start;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.views.views.movielist.MoviesList;
