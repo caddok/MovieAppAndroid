@@ -28,8 +28,6 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
     @BindView(R.id.fab)
     FloatingActionButton mStartButton;
 
-    @BindView(R.id.loading)
-    ProgressBar mProgressBar;
 
     private MovieStartContracts.Presenter mPresenter;
     private MovieStartContracts.Navigator mNavigator;
@@ -63,17 +61,6 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
         this.mPresenter = presenter;
     }
 
-    @Override
-    public void showLoading() {
-        mStartButton.setVisibility(View.GONE);
-
-    }
-
-    @Override
-    public void hideLoading() {
-        mStartButton.setVisibility(View.VISIBLE);
-
-    }
 
     @Override
     public void navigateToNext() {

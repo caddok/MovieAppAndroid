@@ -6,14 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.views.start.StartActivityFragment">
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="94dp"
-        android:layout_height="94dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-
-
     <ImageView
         android:id="@+id/iv_start_curtains"
         android:layout_width="match_parent"

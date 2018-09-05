@@ -19,8 +19,6 @@ public class StartPresenter implements MovieStartContracts.Presenter {
 
     @Override
     public void allowNavigation() {
-        this.mView.showLoading();        //
         this.mView.navigateToNext();
-        this.mView.hideLoading();       //
     }
 }
