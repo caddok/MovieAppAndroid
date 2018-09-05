@@ -31,6 +31,15 @@ import butterknife.OnTextChanged;
  * A simple {@link Fragment} subclass.
  */
 public class MovieDetailsFragment extends Fragment implements MovieDetailsContracts.View, RatingBar.OnRatingBarChangeListener {
+    private static final String SHOW_ERROR = "Error: ";
+    private static final String SHOW_VOTE = "You have voted for ";
+    private static final String SHOW_DURATION = "Duration: ";
+    private static final String SHOW_GENRE = "Genre: ";
+    private static final String SHOW_PREMIERE_YEAR = "Premiere year: ";
+    private static final String SHOW_RATING = "Rating: ";
+
+
+
     @BindView(R.id.iv_movie_poster)
     ImageView mMoviePosterImageView;
 
@@ -60,7 +69,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     private MovieDetailsContracts.Presenter mPresenter;
     private Movie mMovie;                                //
-    private static final String SHOW_ERROR = "Error: ";
 
 
     @Inject
@@ -91,15 +99,24 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
         Picasso.get()
                 .load(movie.getImgUrl())
                 .into(mMoviePosterImageView);
+
         mTitleTextView.setText(movie.getName().toUpperCase());
-        mGenreTextView.setText(movie.getGenre());
-        String duration = "" + movie.getDuration() + " minutes";
+        mTitleTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        //mTitleTextView.setGravity();
+
+        mGenreTextView.setText(SHOW_GENRE + movie.getGenre());
+
+        String duration = SHOW_DURATION + "" + movie.getDuration() + " minutes";
         mDurationTextView.setText(duration);
+
         String year = String.valueOf(movie.getYear());
-        mYearTextView.setText("Premiere " + year);
+        mYearTextView.setText(SHOW_PREMIERE_YEAR + year);
+
         String rating = String.valueOf(movie.getRating());
         rating = rating.substring(0, 3);
-        mMovieRatingTextView.setText("Vote - " + rating);
+
+        mMovieRatingTextView.setText(SHOW_RATING + rating);
+
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         mDescriptionTextView.setText(movie.getMovieDescription());
     }
@@ -147,7 +164,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     @Override
     public void showUpdate(Movie movie) {                 //
         Toast.makeText(getContext(),
-                "You have voted for " + movie.getName() + " !", Toast.LENGTH_SHORT)
+                SHOW_VOTE + movie.getName() + " !", Toast.LENGTH_SHORT)
                 .show();
     }
 
