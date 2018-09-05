@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,9 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     @BindView(R.id.tv_description)
     TextView mDescriptionTextView;
+
+    @BindView(R.id.loading)
+    ProgressBar mLoadingView;
 
     private MovieDetailsContracts.Presenter mPresenter;
     private static final String SHOW_ERROR = "Error: ";
@@ -94,11 +98,16 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     @Override
     public void showLoading() {
-        //TODO
+        runOnUi(() -> mLoadingView.setVisibility(View.VISIBLE));
     }
 
     @Override
     public void hideLoading() {
-        //TODO
+        runOnUi(() ->mLoadingView.setVisibility(View.GONE));
+    }
+
+    private void runOnUi(Runnable action) {
+        getActivity()
+                .runOnUiThread(action);
     }
 }

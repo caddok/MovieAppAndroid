@@ -25,12 +25,6 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     @Inject
     MoviesListContracts.Presenter mPresenter;
 
-    @Inject
-    MovieDetailsFragment mMovieoDetailsFragment;
-
-    @Inject
-    MovieDetailsPresenter mMovieDetailsPresenter;
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -41,7 +35,6 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
 
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);
-
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content,mMovieListFragment)
@@ -65,6 +58,5 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
         intent.putExtra(MovieDetails.EXTRA_KEY,movie);
 
         startActivity(intent);
-
     }
 }

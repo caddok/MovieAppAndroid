@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.georgi.movieapp.R;
@@ -27,6 +28,9 @@ public class MoviesListFragment extends Fragment implements
     private static final String NO_MOVIES_FOUND = "No movies were found";
     @BindView(R.id.lv_movies)
     ListView mMovieListView;
+
+    @BindView(R.id.loading)
+    ProgressBar mLoadingView;
 
     @BindView(R.id.et_search)
     EditText mSearchEditText;
@@ -89,12 +93,18 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showLoading() {
-
+        runOnUi(() -> {
+            mMovieListView.setVisibility(View.GONE);
+            mLoadingView.setVisibility(View.VISIBLE);
+        });
     }
 
     @Override
     public void hideLoading() {
-
+        runOnUi(() -> {
+            mLoadingView.setVisibility(View.GONE);
+            mMovieListView.setVisibility(View.VISIBLE);
+        });
     }
 
     @Override
@@ -111,6 +121,11 @@ public class MoviesListFragment extends Fragment implements
     public void onTextChanged() {
         String pattern = mSearchEditText.getText().toString();
         mPresenter.filterMovies(pattern);
+    }
+
+    private void runOnUi(Runnable action) {
+        getActivity()
+                .runOnUiThread(action);
     }
 
 }
