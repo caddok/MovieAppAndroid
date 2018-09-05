@@ -10,17 +10,7 @@
         android:visibility="gone"
         android:id="@+id/loading"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="match_parent"/>
-=======
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:scaleType="fitXY"
-            android:id="@+id/iv_movie_poster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
->>>>>>> f8ff8a6e4a3f8af1018ce33f9d1cba2fec28fd9d
 
     <ImageView
         android:id="@+id/iv_movie_poster"
@@ -31,6 +21,8 @@
 
     <TextView
         android:id="@+id/tv_title"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@+id/iv_movie_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,28 +30,26 @@
 
     <TextView
         android:id="@+id/tv_genre"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
 
-<<<<<<< HEAD
     <TextView
         android:id="@+id/tv_year"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@id/tv_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
-=======
-        <TextView
-            android:id="@+id/tv_movie_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_duration" />
->>>>>>> f8ff8a6e4a3f8af1018ce33f9d1cba2fec28fd9d
 
     <TextView
         android:id="@+id/tv_duration"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@+id/tv_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,6 +58,8 @@
 
     <TextView
         android:id="@+id/tv_movie_rating"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@+id/tv_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,6 +67,8 @@
 
     <TextView
         android:id="@+id/tv_description"
+        android:textSize="36dp"
+        android:textColor="@color/colorWhiteGrey"
         android:layout_below="@+id/tv_movie_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

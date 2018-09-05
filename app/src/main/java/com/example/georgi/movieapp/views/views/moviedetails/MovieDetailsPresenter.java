@@ -15,7 +15,6 @@ public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
     private MovieService mMovieService;
     private SchedulerProvider mSchedulerProvider;
     private int mMovieId;
-    private Movie mMovie;
 
     @Inject
     public MovieDetailsPresenter(MovieService service, SchedulerProvider provider){
@@ -30,30 +29,18 @@ public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
 
     @Override
     public void loadMovie() {
-        //mView.showLoading();
+        mView.showLoading();
         Disposable disposable = Observable
                 .create((ObservableOnSubscribe<Movie>) emitter -> {
-<<<<<<< HEAD
-                    mMovie = mMovieService.getDetailsById(mMovieId);
-                    emitter.onNext(mMovie);
-=======
                     Movie movie = mMovieService.getDetailsById(mMovieId);
                     emitter.onNext(movie);
->>>>>>> f8ff8a6e4a3f8af1018ce33f9d1cba2fec28fd9d
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
-<<<<<<< HEAD
                 .doFinally(mView::hideLoading)
                 .subscribe(mView::showMovie,
                            mView::showError);
-
-
-=======
-                .doOnError(mView::showError)
-                .subscribe(mView::showMovie);
->>>>>>> f8ff8a6e4a3f8af1018ce33f9d1cba2fec28fd9d
     }
 
     @Override

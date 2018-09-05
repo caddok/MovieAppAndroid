@@ -9,10 +9,10 @@ public interface MovieDetailsContracts {
         void setPresenter(Presenter presenter);
 
         void showError(Throwable e);
-/*
+
         void showLoading();
 
-        void hideLoading();*/
+        void hideLoading();
     }
     interface Presenter{
         void subscribe(View view);

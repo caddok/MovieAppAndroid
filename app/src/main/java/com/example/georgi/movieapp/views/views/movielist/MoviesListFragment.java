@@ -90,7 +90,7 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), SHOW_ERROR + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), SHOW_ERROR + e.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
