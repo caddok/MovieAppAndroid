@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.views.views.moviedetails;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +10,6 @@ import com.example.georgi.movieapp.utils.navigation.navigation.BaseDrawer;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 
 public class MovieDetails extends BaseDrawer {
     public static final long IDENTIFIER = 651;
@@ -23,8 +21,7 @@ public class MovieDetails extends BaseDrawer {
     @Inject
     MovieDetailsContracts.Presenter mMovieDetailsPresenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +31,14 @@ public class MovieDetails extends BaseDrawer {
         Intent incoming = getIntent();
         Movie movie = (Movie) incoming.getSerializableExtra(MovieDetails.EXTRA_KEY);
 
+        mToolbar = this.findViewById(R.id.toolbar);
+
         mMovieDetailsPresenter.setMovieId(movie.getId());
         mMovieDetailsFragment.setPresenter(mMovieDetailsPresenter);
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.movie_content,mMovieDetailsFragment)
+                .replace(R.id.movie_content, mMovieDetailsFragment)
                 .commit();
     }
 

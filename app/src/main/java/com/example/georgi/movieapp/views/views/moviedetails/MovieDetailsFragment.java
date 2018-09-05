@@ -75,11 +75,15 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
     @Override
     public void showMovie(Movie movie) {
-        Picasso.get().load(movie.getImgUrl()).into(mMoviePosterImageView);
+        Picasso.get()
+                .load(movie.getImgUrl())
+                .into(mMoviePosterImageView);
         mTitleTextView.setText(movie.getName());
         mGenreTextView.setText(movie.getGenre());
-        mYearTextView.setText(movie.getYear());
-        mDurationTextView.setText(movie.getDuration());
+        String year = "" + movie.getYear();
+        mYearTextView.setText(year);
+        String duration = "" + movie.getDuration();
+        mDurationTextView.setText(duration);
         String rating = String.valueOf(movie.getRating());
         mMovieRatingTextView.setText(rating);
         mDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
@@ -99,11 +103,25 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     @Override
     public void showLoading() {
         mLoadingView.setVisibility(View.VISIBLE);
+        mTitleTextView.setVisibility(View.GONE);
+        mGenreTextView.setVisibility(View.GONE);
+        mYearTextView.setVisibility(View.GONE);
+        mMoviePosterImageView.setVisibility(View.GONE);
+        mDurationTextView.setVisibility(View.GONE);
+        mMovieRatingTextView.setVisibility(View.GONE);
+        mDescriptionTextView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
         mLoadingView.setVisibility(View.GONE);
+        mTitleTextView.setVisibility(View.VISIBLE);
+        mGenreTextView.setVisibility(View.VISIBLE);
+        mYearTextView.setVisibility(View.VISIBLE);
+        mMoviePosterImageView.setVisibility(View.VISIBLE);
+        mDurationTextView.setVisibility(View.VISIBLE);
+        mMovieRatingTextView.setVisibility(View.VISIBLE);
+        mDescriptionTextView.setVisibility(View.VISIBLE);
     }
 
 }

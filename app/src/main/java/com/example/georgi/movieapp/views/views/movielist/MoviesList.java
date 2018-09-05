@@ -25,13 +25,14 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     @Inject
     MoviesListContracts.Presenter mPresenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_list);
+
+        mToolbar = this.findViewById(R.id.toolbar);
 
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);

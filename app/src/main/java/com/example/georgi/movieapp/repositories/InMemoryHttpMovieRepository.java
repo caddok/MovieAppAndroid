@@ -37,7 +37,7 @@ public class InMemoryHttpMovieRepository implements Repository<Movie> {
 
     @Override
     public Movie getById(int movieId) throws IOException {
-        String url = mServerUrl + "/" + movieId;
+        String url = mServerUrl + "/get/" + movieId;
         String responseBody = mHttpRequester.get(url);
         return mJsonParser.fromJson(responseBody);
     }

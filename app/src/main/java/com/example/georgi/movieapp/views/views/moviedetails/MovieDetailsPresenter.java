@@ -1,6 +1,5 @@
 package com.example.georgi.movieapp.views.views.moviedetails;
 
-import com.example.georgi.movieapp.async.AsyncSchedulerProvider;
 import com.example.georgi.movieapp.async.base.SchedulerProvider;
 import com.example.georgi.movieapp.models.Movie;
 import com.example.georgi.movieapp.services.MovieService;
@@ -34,17 +33,17 @@ public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
         mView.showLoading();
         Disposable disposable = Observable
                 .create((ObservableOnSubscribe<Movie>) emitter -> {
-                    Movie movie = mMovieService.getDetailsById(mMovieId);
+                    mMovie = mMovieService.getDetailsById(mMovieId);
                     emitter.onNext(mMovie);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
                 .doFinally(mView::hideLoading)
-                .subscribe(
-                        view -> mView.showMovie(mMovie),
-                        error -> mView.showError(error)
-                );
+                .subscribe(mView::showMovie,
+                           mView::showError);
+
+
     }
 
     @Override
