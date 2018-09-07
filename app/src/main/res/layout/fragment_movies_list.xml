@@ -12,10 +12,13 @@
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:hint="@string/movie_search_hint" />
+            android:background="@drawable/edit_text_style_searching"
+            android:hint="@string/movie_search_hint"
+            android:inputType="text"
+            android:textColorHint="@color/md_blue_grey_400" />
 
         <ListView
             android:id="@+id/lv_movies"

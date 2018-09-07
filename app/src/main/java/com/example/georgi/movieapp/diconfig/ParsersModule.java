@@ -3,6 +3,7 @@ package com.example.georgi.movieapp.diconfig;
 import com.example.georgi.movieapp.models.Movie;
 import com.example.georgi.movieapp.parsers.GsonJsonParser;
 import com.example.georgi.movieapp.parsers.base.JsonParser;
+import com.google.gson.Gson;
 
 import dagger.Module;
 import dagger.Provides;

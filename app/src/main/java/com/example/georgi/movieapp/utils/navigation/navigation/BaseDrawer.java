@@ -1,11 +1,13 @@
 package com.example.georgi.movieapp.utils.navigation.navigation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.views.views.about.AboutTheApp;
+import com.example.georgi.movieapp.views.views.create.CreateMovieActivity;
 import com.example.georgi.movieapp.views.views.movielist.MoviesList;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -31,6 +33,10 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
                 .withIdentifier(MoviesList.IDENTIFIER)
                 .withName("List of Movies");
 
+        SecondaryDrawerItem createMovie = new SecondaryDrawerItem()
+                .withIdentifier(CreateMovieActivity.IDENTIFIER)
+                .withName("Add your movie");
+
         //TODO:Future plans for accounts
         /*AccountHeader header = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -44,8 +50,10 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
         mDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(getToolbar())
+                //.withSliderBackgroundColor(Color.BLACK)
                 .addDrawerItems(
                         listMoviesItem,
+                        createMovie,
                         aboutTheAppItem
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -77,6 +85,8 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
             return new Intent(BaseDrawer.this, AboutTheApp.class);
         }else if(identifier == MoviesList.IDENTIFIER){
             return new Intent(BaseDrawer.this, MoviesList.class);
+        }else if(identifier == CreateMovieActivity.IDENTIFIER){
+            return new Intent(BaseDrawer.this, CreateMovieActivity.class);
         }
         return null;
     }

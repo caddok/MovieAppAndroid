@@ -34,8 +34,6 @@ public class MovieDetails extends BaseDrawer {
         Intent incoming = getIntent();
         Movie movie = (Movie) incoming.getSerializableExtra(MovieDetails.EXTRA_KEY);
 
-        mToolbar = this.findViewById(R.id.toolbar);
-
         mMovieDetailsPresenter.setMovieId(movie.getId());
         mMovieDetailsFragment.setPresenter(mMovieDetailsPresenter);
 
