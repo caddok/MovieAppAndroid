@@ -7,81 +7,81 @@
     tools:context=".views.views.moviedetails.MovieDetailsFragment">
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/loading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_movie_poster"
         android:layout_width="match_parent"
-        android:scaleType="fitXY"
         android:layout_height="200dp"
-        android:visibility="gone"/>
+        android:scaleType="fitXY"
+        android:visibility="gone" />
 
     <RatingBar
         android:id="@+id/rating_bar"
-        android:layout_below="@+id/iv_movie_poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rating="0.0"
-        android:numStars="5"
+        android:layout_below="@+id/iv_movie_poster"
         android:layout_centerHorizontal="true"
-        android:theme="@style/CustomRatingBar"/>
+        android:numStars="5"
+        android:rating="0.0"
+        android:theme="@style/CustomRatingBar" />
 
     <TextView
         android:id="@+id/tv_title"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@+id/rating_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_below="@+id/rating_bar"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_genre"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_below="@+id/tv_title"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_year"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@id/tv_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_below="@id/tv_genre"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_duration"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@+id/tv_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_below="@+id/tv_year"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 
     <TextView
         android:id="@+id/tv_movie_rating"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@+id/tv_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_below="@+id/tv_duration"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_description"
-        android:textSize="18sp"
-        android:textColor="@color/colorWhiteGrey"
-        android:layout_below="@+id/tv_movie_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_movie_rating"
+        android:textColor="@color/colorWhiteGrey"
+        android:textSize="18sp"
         android:visibility="gone" />
 
 
