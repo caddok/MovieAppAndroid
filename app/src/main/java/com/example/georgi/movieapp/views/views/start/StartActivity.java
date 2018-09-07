@@ -35,7 +35,7 @@ public class StartActivity extends DaggerAppCompatActivity implements MovieStart
     }
 
     @Override
-    public void navigatoTo() {
+    public void navigateTo() {
         Intent intent = new Intent(this, MoviesList.class);
 
         startActivity(intent);

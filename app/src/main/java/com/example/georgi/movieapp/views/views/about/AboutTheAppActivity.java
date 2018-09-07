@@ -6,10 +6,19 @@ import android.support.v7.widget.Toolbar;
 import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.utils.navigation.navigation.BaseDrawer;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
-public class AboutTheApp extends BaseDrawer {
+public class AboutTheAppActivity extends BaseDrawer {
+
     public static final long IDENTIFIER = 20;
+
+    @Inject
+    AboutTheAppFragment mFragment;
+
+    @Inject
+    AboutTheAppContracts.Presenter mPresenter;
 
     private Toolbar mToolbar;
 
@@ -20,6 +29,13 @@ public class AboutTheApp extends BaseDrawer {
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        mFragment.setPresenter(mPresenter);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, mFragment)
+                .commit();
     }
 
     @Override

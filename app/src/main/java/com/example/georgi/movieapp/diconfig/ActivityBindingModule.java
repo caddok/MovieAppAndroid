@@ -1,6 +1,6 @@
 package com.example.georgi.movieapp.diconfig;
 
-import com.example.georgi.movieapp.views.views.about.AboutTheApp;
+import com.example.georgi.movieapp.views.views.about.AboutTheAppActivity;
 import com.example.georgi.movieapp.views.views.create.CreateMovieActivity;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetails;
 import com.example.georgi.movieapp.views.views.movielist.MoviesList;
@@ -23,7 +23,7 @@ public abstract class ActivityBindingModule {
     @ContributesAndroidInjector(
             modules = AboutModule.class
     )
-    abstract AboutTheApp aboutTheApp();
+    abstract AboutTheAppActivity aboutTheApp();
 
     @ActivityScoped
     @ContributesAndroidInjector(

@@ -21,4 +21,5 @@ public class StartPresenter implements MovieStartContracts.Presenter {
     public void allowNavigation() {
         this.mView.navigateToNext();
     }
+
 }

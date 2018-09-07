@@ -9,6 +9,17 @@
     <string name="year_prompt">Choose year</string>
     <string name="duration_prompt">Choose duration</string>
 
+    <string name="aboutApp_info">
+        This application is demo application and is part of a course project in Teleric Academy.
+        The app is designed to create a movie database and meet the demands of the greatest movie admirers.
+        The films are classics of the century and are presented in good style.
+        The app contains information about several dozen movies, there is an option for users to add
+        their favorite movie, there is information about the application itself and the ability for the user to report.
+        The app also allows the user to vote for their favorite movie.
+        Application development has been made possible thanks to Android Studio and SpringMVC REST services.
+        Developed the app:
+        Georgi Delchev and Kristian Evtimov.</string>
+
 
     <string-array name="years_array">
         <item>2018</item><item>2017</item><item>2016</item><item>2015</item><item>2014</item><item>2013</item>
