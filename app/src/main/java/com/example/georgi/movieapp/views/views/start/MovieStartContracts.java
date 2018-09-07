@@ -18,7 +18,7 @@ public interface MovieStartContracts {
 
     interface Navigator{
 
-        void navigatoTo();
+        void navigateTo();
     }
 
 }

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".views.views.start.StartActivity">
+        <activity android:name=".views.views.start.StartActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +22,11 @@
         </activity>
         <activity android:name=".views.views.movielist.MoviesList" />
         <activity android:name=".views.views.moviedetails.MovieDetails" />
-        <activity android:name=".views.views.about.AboutTheApp" />
+        <activity android:name=".views.views.about.AboutTheAppActivity" />
         <activity android:name=".views.views.redactoptions.MovieRedactOptionsActivity" />
-        <activity android:name=".views.views.redact.MovieRedactActivity"></activity>
-    </application>
+        <activity android:name=".views.views.redact.MovieRedactActivity" />
+        <activity android:name=".views.views.create.CreateMovieActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden"/>
+</application>
 
 </manifest>

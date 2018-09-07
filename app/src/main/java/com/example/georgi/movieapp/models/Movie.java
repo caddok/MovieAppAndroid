@@ -25,7 +25,6 @@ public class Movie implements Serializable {
         this.name = name;
         this.genre = genre;
         this.year = year;
-        this.rating = voteSum/votes;
         this.duration = duration;
         this.imgUrl = imgUrl;
         this.movieDescription = movieDescription;

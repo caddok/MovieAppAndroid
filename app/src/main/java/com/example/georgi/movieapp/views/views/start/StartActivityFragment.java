@@ -64,7 +64,7 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
 
     @Override
     public void navigateToNext() {
-        this.mNavigator.navigatoTo();
+        this.mNavigator.navigateTo();
     }
 
     @Override

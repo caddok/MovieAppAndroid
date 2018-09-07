@@ -13,6 +13,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
+        ValidatorModule.class,
         AdapterModule.class,
         AsyncModule.class,
         ServiceModule.class,

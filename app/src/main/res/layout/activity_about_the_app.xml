@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.views.about.AboutTheApp">
+    tools:context=".views.views.about.AboutTheAppActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,6 +14,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
+
+        <FrameLayout
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:id="@+id/content"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
