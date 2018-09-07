@@ -11,6 +11,8 @@ import com.example.georgi.movieapp.utils.navigation.navigation.BaseDrawer;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetails;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsFragment;
 import com.example.georgi.movieapp.views.views.moviedetails.MovieDetailsPresenter;
+import com.example.georgi.movieapp.views.views.redact.MovieRedactActivity;
+import com.example.georgi.movieapp.views.views.redactoptions.MovieRedactOptionsFragment;
 
 import javax.inject.Inject;
 
@@ -26,6 +28,7 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
     MoviesListContracts.Presenter mPresenter;
 
     private Toolbar mToolbar;
+    private String mIntentExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,11 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
         mToolbar = this.findViewById(R.id.toolbar);
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        Intent incoming = getIntent();
+        mIntentExtra = incoming.getStringExtra("Purpose");
+
+        mPresenter.setIntentPurpose(mIntentExtra);
         mMovieListFragment.setNavigator(this);
         mMovieListFragment.setPresenter(mPresenter);
         getFragmentManager()
@@ -54,10 +62,15 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
 
     @Override
     public void navigateWith(Movie movie) {
-        Intent intent = new Intent(this, MovieDetails.class);
+        Intent intent = null;
 
-        intent.putExtra(MovieDetails.EXTRA_KEY,movie);
-
+        if (mIntentExtra != null && mIntentExtra.equals(MovieRedactOptionsFragment.INTENT_TO_REDACT)) {
+            intent = new Intent(this, MovieRedactActivity.class);
+            intent.putExtra(MovieRedactActivity.REDACT_EXTRA,movie);
+        } else {
+            intent = new Intent(this,MovieDetails.class);
+            intent.putExtra(MovieDetails.EXTRA_KEY,movie);
+        }
         startActivity(intent);
     }
 }

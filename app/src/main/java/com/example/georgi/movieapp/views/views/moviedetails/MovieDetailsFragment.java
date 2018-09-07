@@ -68,7 +68,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
     RatingBar mRatingBar;
 
     private MovieDetailsContracts.Presenter mPresenter;
-    private Movie mMovie;                                //
+    private Movie mMovie;
 
 
     @Inject
@@ -102,7 +102,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
 
         mTitleTextView.setText(movie.getName().toUpperCase());
         mTitleTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        //mTitleTextView.setGravity();
 
         mGenreTextView.setText(SHOW_GENRE + movie.getGenre());
 

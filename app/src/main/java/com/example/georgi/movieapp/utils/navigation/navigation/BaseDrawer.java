@@ -2,18 +2,13 @@ package com.example.georgi.movieapp.utils.navigation.navigation;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.views.views.about.AboutTheApp;
 import com.example.georgi.movieapp.views.views.movielist.MoviesList;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.example.georgi.movieapp.views.views.redactoptions.MovieRedactOptionsActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -31,6 +26,10 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
                 .withIdentifier(MoviesList.IDENTIFIER)
                 .withName("List of Movies");
 
+        SecondaryDrawerItem redactMovieItem = new SecondaryDrawerItem()
+                .withIdentifier(MovieRedactOptionsActivity.IDENTIFIER)
+                .withName("Redact a movie");
+
         //TODO:Future plans for accounts
         /*AccountHeader header = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -46,37 +45,34 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
                 .withToolbar(getToolbar())
                 .addDrawerItems(
                         listMoviesItem,
+                        redactMovieItem,
                         aboutTheAppItem
                 )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(
-                            View view,
-                            int position,
-                            IDrawerItem drawerItem) {
-                        long identifier = drawerItem.getIdentifier();
+                .withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                    long identifier = drawerItem.getIdentifier();
 
-                        if (getIdentifier() == identifier) {
-                            return false;
-                        }
-
-                        Intent intent = getNextIntent(identifier);
-                        if (intent == null) {
-                            return false;
-                        }
-
-                        startActivity(intent);
-                        return true;
+                    if (getIdentifier() == identifier) {
+                        return false;
                     }
+
+                    Intent intent = getNextIntent(identifier);
+                    if (intent == null) {
+                        return false;
+                    }
+
+                    startActivity(intent);
+                    return true;
                 })
                 .build();
     }
 
-    private Intent getNextIntent(long identifier){
-        if(identifier == AboutTheApp.IDENTIFIER) {
+    private Intent getNextIntent(long identifier) {
+        if (identifier == AboutTheApp.IDENTIFIER) {
             return new Intent(BaseDrawer.this, AboutTheApp.class);
-        }else if(identifier == MoviesList.IDENTIFIER){
+        } else if (identifier == MoviesList.IDENTIFIER) {
             return new Intent(BaseDrawer.this, MoviesList.class);
+        } else if (identifier == MovieRedactOptionsActivity.IDENTIFIER) {
+            return new Intent(BaseDrawer.this, MovieRedactOptionsActivity.class);
         }
         return null;
     }

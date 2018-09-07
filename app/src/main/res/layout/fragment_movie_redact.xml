@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.views.redact.MovieRedactFragment">
+
+    <ProgressBar
+        android:id="@+id/loading_redact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_save_changes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_changes_btn" />
+
+        <TextView
+            android:layout_below="@id/btn_save_changes"
+            android:id="@+id/tv_name_to_redact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/redact_movie_name"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_redact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name_to_redact"
+            android:inputType="text"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_add_or_redact_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_redact_name"
+            android:text="@string/add_or_redact_genre"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_redact_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_add_or_redact_genre"
+            android:inputType="text"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_redact_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_redact_genre"
+            android:text="@string/change_year"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_redact_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_redact_year"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_redact_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_redact_year"
+            android:text="@string/change_duration"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_redact_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_redact_duration"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_redact_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_redact_duration"
+            android:text="@string/change_redact_description"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_redact_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_redact_description"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

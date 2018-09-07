@@ -3,7 +3,7 @@ package com.example.georgi.movieapp.views.views.moviedetails;
 import com.example.georgi.movieapp.models.Movie;
 
 public interface MovieDetailsContracts {
-    interface View{
+    interface View {
         void showMovie(Movie movie);
 
         void setPresenter(Presenter presenter);
@@ -14,16 +14,17 @@ public interface MovieDetailsContracts {
 
         void hideLoading();
 
-        void setMovie(Movie movie);   //
+        void setMovie(Movie movie);
 
-        void showUpdate(Movie movie);       //
+        void showUpdate(Movie movie);
     }
-    interface Presenter{
+
+    interface Presenter {
         void subscribe(View view);
 
         void loadMovie();
 
-        void updateMovie(Movie movie);    //
+        void updateMovie(Movie movie);
 
         void setMovieId(int id);
     }

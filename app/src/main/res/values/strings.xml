@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">MovieApp</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="movie_search_hint">Enter name of the movie</string>
+    <string name="movie_search_hint">Enter movie name or category</string>
+    <string name="redact_a_movie">You can contribute to the database by either </string>
+    <string name="delete_a_movie">You can delete a fake movie which helps us to maintain a clean database</string>
+    <string name="redact_a_movie_btn">Redact a movie</string>
+    <string name="or">OR</string>
+    <string name="delete_a_movie_btn">Delete a movie</string>
+    <string name="save_changes_btn">save changes</string>
+    <string name="redact_movie_name">Redact movie name:</string>
+    <string name="add_or_redact_genre">Add/Redact genre(s):</string>
+    <string name="change_year">Change year:</string>
+    <string name="change_duration">Change duration:</string>
+    <string name="change_redact_description">Change/Redact description</string>
 </resources>

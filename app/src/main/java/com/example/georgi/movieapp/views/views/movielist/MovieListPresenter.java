@@ -15,7 +15,8 @@ import io.reactivex.disposables.Disposable;
 public class MovieListPresenter implements MoviesListContracts.Presenter {
     private MoviesListContracts.View mView;
     private MovieService mMovieService;
-    private SchedulerProvider mProvider; //
+    private SchedulerProvider mProvider;
+    private String mPurpose;
 
     @Inject
     public MovieListPresenter(MovieService movieService, SchedulerProvider provider) {
@@ -47,23 +48,43 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
 
     @Override
     public void selectMovie(Movie movie) {
-        mView.showMovieDetails(movie);
+        if (mPurpose != null) {
+            if (mPurpose.equals("redact")) {
+                mView.getMovieToRedact(movie);
+            } else {
+                deleteMovie(movie);
+            }
+        } else {
+            mView.showMovieDetails(movie);
+        }
     }
 
     @Override
     public void filterMovies(String pattern) {
-        mView.showLoading();
-        Disposable disposable = Observable
-                .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
-                    List<Movie> movies = mMovieService.getFilteredMovies(pattern);
-                    emitter.onNext(movies);
-                    emitter.onComplete();
-                })
-                .subscribeOn(mProvider.background())
-                .observeOn(mProvider.ui())
-                .doFinally(mView::hideLoading)
-                .subscribe(this::presentMoviesToView,
-                        error->mView.showError(error));
+        if(mPurpose == null) {
+            mView.showLoading();
+            Disposable disposable = Observable
+                    .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
+                        List<Movie> movies = mMovieService.getFilteredMovies(pattern);
+                        emitter.onNext(movies);
+                        emitter.onComplete();
+                    })
+                    .subscribeOn(mProvider.background())
+                    .observeOn(mProvider.ui())
+                    .doFinally(mView::hideLoading)
+                    .subscribe(this::presentMoviesToView,
+                            error -> mView.showError(error));
+        }
+    }
+
+    @Override
+    public void setIntentPurpose(String purpose) {
+        mPurpose = purpose;
+    }
+
+    @Override
+    public String getIntentPurpose() {
+        return mPurpose;
     }
 
     private void presentMoviesToView(List<Movie> movieList) {
@@ -72,5 +93,21 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
         } else {
             mView.showMovies(movieList);
         }
+    }
+
+    private void deleteMovie(Movie movieToDelete) {
+        mView.showLoading();
+        String movieName = movieToDelete.getName();
+        Disposable disposable = Observable
+                .create((ObservableOnSubscribe<String>) emitter -> {
+                    mMovieService.deleteMovie(movieToDelete.getId());
+                    emitter.onNext(movieName);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mProvider.background())
+                .observeOn(mProvider.ui())
+                .doFinally(mView::hideLoading)
+                .subscribe(result -> mView.showDeleteMessage(movieName),
+                        error -> mView.showError(error));
     }
 }

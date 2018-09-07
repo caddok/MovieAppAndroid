@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Movie implements Serializable {
 
     public int id;
-    public double voteSum;               //
-    public int votes;                    //
+    public double voteSum;
+    public int votes;
     public String name;
     public String genre;
     public int year;

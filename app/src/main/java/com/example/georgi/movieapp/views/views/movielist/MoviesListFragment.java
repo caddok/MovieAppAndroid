@@ -40,10 +40,10 @@ public class MoviesListFragment extends Fragment implements
     @Inject
     MovieListAdapter mMovieListAdapter;
 
-
-
+    private String mPurpose;
     private MoviesListContracts.Presenter mPresenter;
     private static final String SHOW_ERROR = "Error: ";
+    private static final String SHOW_DELETE_MESSAGE = "You successfully deleted ";
     private MoviesListContracts.Navigator mNavigator;
 
     @Inject
@@ -59,7 +59,8 @@ public class MoviesListFragment extends Fragment implements
 
         ButterKnife.bind(this,view);
 
-        mMovieListView.setAdapter(mMovieListAdapter);     //
+        mPurpose = mPresenter.getIntentPurpose();
+        mMovieListView.setAdapter(mMovieListAdapter);
 
         return view;
     }
@@ -85,12 +86,13 @@ public class MoviesListFragment extends Fragment implements
     public void showMovies(List<Movie> moviesList) {
         mMovieListAdapter.clear();
         mMovieListAdapter.addAll(moviesList);
-        mMovieListAdapter.notifyDataSetChanged();  //
+        mMovieListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), SHOW_ERROR + e.getMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(),
+                SHOW_ERROR + e.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -107,12 +109,26 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showEmptyMovieList() {
-        Toast.makeText(getContext(), NO_MOVIES_FOUND, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), NO_MOVIES_FOUND, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showMovieDetails(Movie movie) {
+        if (mPurpose == null) {
+            mNavigator.navigateWith(movie);
+        }
+    }
+
+    @Override
+    public void getMovieToRedact(Movie movie) {
         mNavigator.navigateWith(movie);
+    }
+
+    @Override
+    public void showDeleteMessage(String movieName) {
+        Toast.makeText(getContext(),
+                SHOW_DELETE_MESSAGE + movieName, Toast.LENGTH_LONG).show();
+        mPresenter.loadMovies();
     }
 
     @OnTextChanged(R.id.et_search)
@@ -123,8 +139,8 @@ public class MoviesListFragment extends Fragment implements
 
     @OnItemClick(R.id.lv_movies)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Movie hero = mMovieListAdapter.getItem(position);
-        mPresenter.selectMovie(hero);
+        Movie movie = mMovieListAdapter.getItem(position);
+        mPresenter.selectMovie(movie);
     }
 
 }

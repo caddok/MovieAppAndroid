@@ -1,4 +1,4 @@
-package com.example.georgi.movieapp.views.views.moviedetails;
+package com.example.georgi.movieapp.views.views.redact;
 
 import com.example.georgi.movieapp.async.base.SchedulerProvider;
 import com.example.georgi.movieapp.models.Movie;
@@ -10,39 +10,40 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
-public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
-    private MovieDetailsContracts.View mView;
+public class MovieRedactPresenter implements MovieRedactContracts.Presenter {
+    private MovieRedactContracts.View mView;
     private MovieService mMovieService;
     private SchedulerProvider mSchedulerProvider;
     private int mMovieId;
-    private Movie mMovie;
+    private Movie movie;
 
     @Inject
-    public MovieDetailsPresenter(MovieService service, SchedulerProvider provider){
-        mMovieService = service;
-        mSchedulerProvider = provider;
+    public MovieRedactPresenter(MovieService service, SchedulerProvider provider) {
+        this.mMovieService = service;
+        this.mSchedulerProvider = provider;
     }
 
+
     @Override
-    public void subscribe(MovieDetailsContracts.View view) {
+    public void subscribe(MovieRedactContracts.View view) {
         mView = view;
     }
 
     @Override
-    public void loadMovie() {
+    public void loadMovieToRedact() {
         mView.showLoading();
         Disposable disposable = Observable
-                .create((ObservableOnSubscribe<Movie>) emitter -> {
-                    mMovie = mMovieService.getDetailsById(mMovieId);
-                    mView.setMovie(mMovie);
-                    emitter.onNext(mMovie);
+                .create((ObservableOnSubscribe<Movie>) emitter-> {
+                    Movie movie = mMovieService.getDetailsById(mMovieId);
+                    mView.setMovie(movie);
+                    emitter.onNext(movie);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
                 .doFinally(mView::hideLoading)
-                .subscribe(mView::showMovie,
-                           mView::showError);
+                .subscribe(mView::showMovieToRedact,
+                        mView::showError);
     }
 
     @Override
@@ -51,19 +52,18 @@ public class MovieDetailsPresenter implements MovieDetailsContracts.Presenter {
     }
 
     @Override
-    public void updateMovie(Movie movie) {
+    public void updateRedactedMovie(Movie movie) {
         mView.showLoading();
         Disposable disposable = Observable
-                .create((ObservableOnSubscribe<Movie>) emitter -> {
-                    Movie movieToUpdate = mMovieService.update(movie, movie.getId());
+                .create((ObservableOnSubscribe<Movie>) emitter-> {
+                    Movie movieToUpdate = mMovieService.update(movie,movie.getId());
                     emitter.onNext(movieToUpdate);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.background())
                 .observeOn(mSchedulerProvider.ui())
                 .doFinally(mView::hideLoading)
-                .subscribe(mView::showUpdate,
+                .subscribe(mView::showSuccessMessage,
                         mView::showError);
     }
-
 }

@@ -21,17 +21,23 @@ public interface MoviesListContracts {
         void showEmptyMovieList();
 
         void showMovieDetails(Movie movie);
+
+        void getMovieToRedact(Movie movie);
+
+        void showDeleteMessage(String movieName);
     }
-
     interface Presenter {
-        void subscribe(View view);
 
+        void subscribe(View view);
         void loadMovies();
 
         void selectMovie(Movie movie);
 
         void filterMovies(String pattern);
 
+        void setIntentPurpose(String purpose);
+
+        String getIntentPurpose();
     }
 
     interface Navigator{

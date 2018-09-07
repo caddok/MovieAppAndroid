@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.views.redactoptions.MovieRedactOptionsFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_redact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100sp"
+            android:text="@string/redact_a_movie"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_redact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_redact"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30sp"
+            android:text="@string/redact_a_movie_btn" />
+
+        <TextView
+            android:id="@+id/tv_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_redact"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30sp"
+            android:text="@string/or"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_or"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30sp"
+            android:text="@string/delete_a_movie"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_delete"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30sp"
+            android:text="@string/delete_a_movie_btn" />
+
+        <ListView
+            android:id="@+id/lv_movies_options"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>
