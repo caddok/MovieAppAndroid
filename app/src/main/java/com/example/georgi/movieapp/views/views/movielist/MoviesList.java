@@ -65,7 +65,7 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
 
     @Override
     public void navigateWith(Movie movie) {
-        Intent intent = null;
+        Intent intent;
 
         if (mIntentExtra != null && mIntentExtra.equals(MovieRedactOptionsFragment.INTENT_TO_REDACT)) {
             intent = new Intent(this, MovieRedactActivity.class);

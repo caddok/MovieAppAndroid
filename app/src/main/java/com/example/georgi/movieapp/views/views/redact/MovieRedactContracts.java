@@ -19,6 +19,10 @@ public interface MovieRedactContracts {
         void showSuccessMessage(Movie movie);
 
         void setMovie(Movie movie);
+
+        void setNavigator(Navigator navigator);
+
+        void navigateToNext(String intention);
     }
 
     interface Presenter{
@@ -30,5 +34,11 @@ public interface MovieRedactContracts {
         void setMovieId(int id);
 
         void updateRedactedMovie(Movie movie);
+
+        void allowNavigation(String intention);
+    }
+
+    interface Navigator {
+        void nagivateTo(String intention);
     }
 }

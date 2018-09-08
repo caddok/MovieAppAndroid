@@ -1,20 +1,21 @@
 package com.example.georgi.movieapp.views.views.movielist;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.models.Movie;
-import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ import butterknife.OnTextChanged;
 
 public class MoviesListFragment extends Fragment implements
         MoviesListContracts.View {
-    private static final String NO_MOVIES_FOUND = "No movies were found";
+
     @BindView(R.id.lv_movies)
     ListView mMovieListView;
 
@@ -42,9 +43,12 @@ public class MoviesListFragment extends Fragment implements
 
     private String mPurpose;
     private MoviesListContracts.Presenter mPresenter;
-    private static final String SHOW_ERROR = "Error: ";
-    private static final String SHOW_DELETE_MESSAGE = "You successfully deleted ";
     private MoviesListContracts.Navigator mNavigator;
+    private static final String SHOW_ERROR = "Error: ";
+    private static final String NO_MOVIES_FOUND = "No movies were found";
+    private static final String SHOW_DELETE_MESSAGE = "You successfully deleted ";
+    private static final String SHOW_WARNING_PART_ONE = "You are about to delete ";
+    private static final String SHOW_WARNING_PART_TWO = "Are you sure about that ?";
 
     @Inject
     public MoviesListFragment() {
@@ -57,7 +61,7 @@ public class MoviesListFragment extends Fragment implements
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies_list, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         mPurpose = mPresenter.getIntentPurpose();
         mMovieListView.setAdapter(mMovieListAdapter);
@@ -114,7 +118,7 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showMovieDetails(Movie movie) {
-        if (mPurpose == null) {
+        if (mPurpose.equals("")) {
             mNavigator.navigateWith(movie);
         }
     }
@@ -140,7 +144,48 @@ public class MoviesListFragment extends Fragment implements
     @OnItemClick(R.id.lv_movies)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Movie movie = mMovieListAdapter.getItem(position);
-        mPresenter.selectMovie(movie);
+        if (mPurpose.equals("delete") && !mPurpose.equals("")) {
+            AlertDialog.Builder mDeleteAlertBuilder = new AlertDialog.Builder(getContext());
+            View mDeleteView = View.inflate(getContext(), R.layout.dialog_delete, null);
+            TextView mWarningTextView = mDeleteView.findViewById(R.id.tv_delete_warning);
+            TextView mDeleteTextView = mDeleteView.findViewById(R.id.tv_delete_film);
+
+            if (movie != null) {
+                setDeleteMessage(mDeleteTextView, movie.getName());
+            }
+
+            Button mYesButton = mDeleteView.findViewById(R.id.btn_delete_yes);
+            Button mNoButton = mDeleteView.findViewById(R.id.btn_delete_no);
+
+            mDeleteAlertBuilder.setView(mDeleteView);
+            AlertDialog deleteDialog = mDeleteAlertBuilder.create();
+            deleteDialog.show();
+
+            getYesClick(mYesButton, movie, deleteDialog);
+            getNoClick(mNoButton,deleteDialog);
+
+
+        } else {
+            mPresenter.selectMovie(movie);
+        }
+    }
+
+    private void getNoClick(Button mNoButton, AlertDialog deleteDialog) {
+        mNoButton.setOnClickListener(v -> deleteDialog.hide());
+
+    }
+
+    private void getYesClick(Button mYesButton, Movie movie, AlertDialog deleteDialog) {
+        mYesButton.setOnClickListener(v -> {
+            mPresenter.selectMovie(movie);
+            deleteDialog.hide();
+        });
+    }
+
+    private void setDeleteMessage(TextView mDeleteTextView, String name) {
+        String message = SHOW_WARNING_PART_ONE + name + "\n" + SHOW_WARNING_PART_TWO;
+        mDeleteTextView.setText(message);
+        mDeleteTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
     }
 
 }

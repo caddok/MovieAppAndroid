@@ -14,6 +14,7 @@
     <string name="change_year">Change year:</string>
     <string name="change_duration">Change duration:</string>
     <string name="change_redact_description">Change/Redact description</string>
+    <string name="delete_warning">Warning!!!</string>
 
 
 
@@ -30,6 +31,12 @@
         Application development has been made possible thanks to Android Studio and SpringMVC REST services.
         Developed the app:
         Georgi Delchev and Kristian Evtimov.</string>
+    <string name="btn_delete_yes">Yes</string>
+    <string name="btn_delete_no">No</string>
+    <string name="changes_applied">CHANGES APPLIED</string>
+    <string name="dialog_redact_msg">Thank you for helping us maintaining clean and accurate database.You can: </string>
+    <string name="redact_another_one">Redact another</string>
+    <string name="btn_go_back">Go back</string>
 
 
     <string-array name="years_array">

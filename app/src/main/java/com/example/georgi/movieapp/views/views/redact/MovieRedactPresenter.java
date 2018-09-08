@@ -66,4 +66,9 @@ public class MovieRedactPresenter implements MovieRedactContracts.Presenter {
                 .subscribe(mView::showSuccessMessage,
                         mView::showError);
     }
+
+    @Override
+    public void allowNavigation(String intention) {
+        this.mView.navigateToNext(intention);
+    }
 }

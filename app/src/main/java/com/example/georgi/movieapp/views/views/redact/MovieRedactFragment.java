@@ -1,6 +1,7 @@
 package com.example.georgi.movieapp.views.views.redact;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.georgi.movieapp.R;
 import com.example.georgi.movieapp.models.Movie;
+import com.example.georgi.movieapp.views.views.redactoptions.MovieRedactOptionsFragment;
 
 import javax.inject.Inject;
 
@@ -63,6 +65,7 @@ public class MovieRedactFragment extends Fragment implements MovieRedactContract
     ProgressBar mRedactLoading;
 
     private Movie movie;
+    private MovieRedactContracts.Navigator mNavigator;
     private MovieRedactContracts.Presenter mPresenter;
     private static final String SHOW_ERROR = "Error: ";
     private static final String SHOW_SUCCESS_MESSAGE = "You have successfully updated ";
@@ -147,10 +150,51 @@ public class MovieRedactFragment extends Fragment implements MovieRedactContract
         this.movie = movie;
     }
 
+    @Override
+    public void setNavigator(MovieRedactContracts.Navigator navigator) {
+        mNavigator = navigator;
+    }
+
+    @Override
+    public void navigateToNext(String intention) {
+        this.mNavigator.nagivateTo(intention);
+    }
+
     @OnClick(R.id.btn_save_changes)
     public void onClick(View v) {
         replaceChangedValuesOfMovie();
+        AlertDialog.Builder mRedactDialogBuilder = new AlertDialog.Builder(getContext());
+        View mRedactView = View.inflate(getContext(),R.layout.dialog_redact,null);
+
+        TextView mChangesTextView = mRedactView.findViewById(R.id.tv_changes);
+        TextView mThankYouTextView = mRedactView.findViewById(R.id.tv_thank_you);
+        Button mAnotherButton = mRedactView.findViewById(R.id.btn_redact_another);
+        Button mGoBackButton = mRedactView.findViewById(R.id.btn_go_back);
+
+        mRedactDialogBuilder.setView(mRedactView);
+        AlertDialog redactDialog = mRedactDialogBuilder.create();
+        redactDialog.show();
+
+        getAnotherClick(mAnotherButton,redactDialog);
+        getGoBackClick(mGoBackButton,redactDialog);
+
         mPresenter.updateRedactedMovie(movie);
+    }
+
+    private void getGoBackClick(Button mGoBackButton, AlertDialog redactDialog) {
+        String intent = "";
+        mGoBackButton.setOnClickListener(v -> {
+            this.mPresenter.allowNavigation("");
+            redactDialog.hide();
+        });
+    }
+
+    private void getAnotherClick(Button mAnotherButton, AlertDialog redactDialog) {
+        String intent = MovieRedactOptionsFragment.INTENT_TO_REDACT;
+        mAnotherButton.setOnClickListener(v -> {
+            this.mPresenter.allowNavigation(intent);
+            redactDialog.hide();
+        });
     }
 
     private void replaceChangedValuesOfMovie() {

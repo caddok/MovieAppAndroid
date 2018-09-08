@@ -18,7 +18,7 @@ public class RepositoriesModule {
     @Provides
     @Singleton
     public Repository<Movie> movieRepository(HttpRequester requester, JsonParser<Movie> parser) {
-        String url = Constants.BASE_SERVER_URL_KRIS + "/movies";
+        String url = Constants.BASE_SERVER_URL + "/movies";
         return new InMemoryHttpMovieRepository(url,requester,parser);
     }
 }
