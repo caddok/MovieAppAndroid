@@ -3,7 +3,9 @@ package com.example.georgi.movieapp.views.views.redact;
 import com.example.georgi.movieapp.models.Movie;
 
 public interface MovieRedactContracts {
+
     interface View{
+
         void setPresenter(Presenter presenter);
 
         void showLoading();
@@ -20,6 +22,7 @@ public interface MovieRedactContracts {
     }
 
     interface Presenter{
+
         void subscribe(View view);
 
         void loadMovieToRedact();

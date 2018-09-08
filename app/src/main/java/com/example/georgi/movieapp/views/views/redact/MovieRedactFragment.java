@@ -25,6 +25,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class MovieRedactFragment extends Fragment implements MovieRedactContracts.View {
+
     @BindView(R.id.tv_name_to_redact)
     TextView mNameTextView;
 

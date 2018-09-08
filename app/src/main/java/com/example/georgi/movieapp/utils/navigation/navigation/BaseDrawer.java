@@ -32,6 +32,8 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
         SecondaryDrawerItem createMovie = new SecondaryDrawerItem()
                 .withIdentifier(CreateMovieActivity.IDENTIFIER)
                 .withName("Add your movie");
+
+
         //TODO:Future plans for accounts
         /*AccountHeader header = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -77,6 +79,8 @@ public abstract class BaseDrawer extends DaggerAppCompatActivity {
             return new Intent(BaseDrawer.this, MoviesList.class);
         } else if (identifier == MovieRedactOptionsActivity.IDENTIFIER) {
             return new Intent(BaseDrawer.this, MovieRedactOptionsActivity.class);
+        } else if (identifier == CreateMovieActivity.IDENTIFIER) {
+            return new Intent(BaseDrawer.this, CreateMovieActivity.class);
         }
         return null;
     }

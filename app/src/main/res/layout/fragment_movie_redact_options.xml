@@ -63,12 +63,6 @@
             android:layout_marginTop="30sp"
             android:text="@string/delete_a_movie_btn" />
 
-        <ListView
-            android:id="@+id/lv_movies_options"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
 
     </RelativeLayout>
 

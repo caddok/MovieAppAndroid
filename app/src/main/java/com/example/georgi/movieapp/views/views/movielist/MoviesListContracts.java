@@ -29,6 +29,7 @@ public interface MoviesListContracts {
     interface Presenter {
 
         void subscribe(View view);
+
         void loadMovies();
 
         void selectMovie(Movie movie);

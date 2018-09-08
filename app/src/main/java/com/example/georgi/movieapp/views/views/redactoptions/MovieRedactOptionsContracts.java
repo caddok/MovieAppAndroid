@@ -1,8 +1,5 @@
 package com.example.georgi.movieapp.views.views.redactoptions;
 
-import com.example.georgi.movieapp.models.Movie;
-
-import java.util.List;
 
 public interface MovieRedactOptionsContracts {
     interface View {
@@ -12,10 +9,22 @@ public interface MovieRedactOptionsContracts {
 
         void hideLoading();
 
+        void navigateToNext(String intention);
+
+        void setNavigator(Navigator navigator);
+
     }
 
     interface Presenter{
+
         void subscribe(View view);
 
+        void allowNavigation(String intention);
+
+    }
+
+    interface Navigator{
+
+        void navigateTo(String intention);
     }
 }

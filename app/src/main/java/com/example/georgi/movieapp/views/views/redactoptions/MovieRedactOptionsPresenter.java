@@ -21,4 +21,9 @@ public class MovieRedactOptionsPresenter implements MovieRedactOptionsContracts.
         mView = view;
     }
 
+    @Override
+    public void allowNavigation(String intention) {
+        this.mView.navigateToNext(intention);
+    }
+
 }

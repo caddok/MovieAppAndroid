@@ -44,9 +44,10 @@ public class MovieRedactOptionsFragment extends Fragment implements MovieRedactO
 
 
     private MovieRedactOptionsContracts.Presenter presenter;
+    private MovieRedactOptionsContracts.Navigator mNavigator;
     private static final String SHOW_ERROR = "Error: ";
     public static final String INTENT_TO_REDACT = "redact";
-    private static final String INTENT_TO_DELETE = "delete";
+    public static final String INTENT_TO_DELETE = "delete";
 
     @Inject
     public MovieRedactOptionsFragment() {
@@ -97,20 +98,25 @@ public class MovieRedactOptionsFragment extends Fragment implements MovieRedactO
         mRedactButton.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void navigateToNext(String intention) {
+        this.mNavigator.navigateTo(intention);
+    }
+
+    @Override
+    public void setNavigator(MovieRedactOptionsContracts.Navigator navigator) {
+        this.mNavigator = navigator;
+    }
+
     @OnClick({R.id.btn_redact,
             R.id.btn_delete})
     public void onClick(View v) {
-        Intent intent;
         switch (v.getId()) {
             case R.id.btn_redact:
-                intent = new Intent(getContext(), MoviesList.class);
-                intent.putExtra("Purpose",INTENT_TO_REDACT);
-                startActivity(intent);
+                this.presenter.allowNavigation(INTENT_TO_REDACT);
                 break;
             case R.id.btn_delete:
-                intent = new Intent(getContext(), MoviesList.class);
-                intent.putExtra("Purpose",INTENT_TO_DELETE);
-                startActivity(intent);
+                this.presenter.allowNavigation(INTENT_TO_DELETE);
                 break;
 
         }
