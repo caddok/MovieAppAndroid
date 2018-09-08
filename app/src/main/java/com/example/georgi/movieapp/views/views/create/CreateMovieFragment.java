@@ -1,9 +1,11 @@
 package com.example.georgi.movieapp.views.views.create;
 
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -170,7 +172,47 @@ public class CreateMovieFragment extends Fragment implements MovieCreateContract
 
     @Override
     public void navigateToListActivity() {
+        showCreate();
         mNavigator.navigateToListActivity();
+    }
+
+    @Override
+    public void openDialog(Movie movie) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(
+                getContext());
+
+        dialog.setTitle("Confirm Create");
+
+        dialog.setMessage("Are you sure you want to create this movie?");
+
+        dialog.setIcon(R.drawable.star_icon2);
+
+        dialog.setPositiveButton("YES",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        mPresenter.createMovie(movie);
+                    }
+                });
+
+        dialog.setNegativeButton("CANCEL",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(),
+                                "Movie creation canceled!", Toast.LENGTH_SHORT)
+                                .show();
+                        dialog.cancel();
+                    }
+                });
+
+        dialog.show();
+    }
+
+    @Override
+    public void showCreate() {
+        Toast.makeText(getContext(),
+                "Movie added to database!", Toast.LENGTH_SHORT)
+                .show();
     }
 
     @OnClick(R.id.btn_create)
@@ -184,7 +226,7 @@ public class CreateMovieFragment extends Fragment implements MovieCreateContract
 
         Movie createdMovie = new Movie(1,0,0, name, genre, year, duration, imgUrl, movieDescription);
 
-        mPresenter.createMovie(createdMovie);
+        openDialog(createdMovie);
     }
 
     public void setNavigator(MovieCreateContracts.Navigator navigator) {

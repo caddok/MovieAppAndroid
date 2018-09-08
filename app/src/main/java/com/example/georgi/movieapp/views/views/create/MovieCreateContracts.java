@@ -16,6 +16,10 @@ public interface MovieCreateContracts {
 
         void navigateToListActivity();
 
+        void openDialog(Movie movie);
+
+        void showCreate();
+
 
     }
 

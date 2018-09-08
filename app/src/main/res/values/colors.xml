@@ -8,4 +8,5 @@
     <color name="main_color">#e81414</color>
     <color name="secondary_color">#fffb3d</color>
     <color name="background">#020202</color>
+    <color name="colorBordo">#8E0000</color>
 </resources>
