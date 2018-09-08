@@ -64,6 +64,10 @@ public class MoviesListFragment extends Fragment implements
         ButterKnife.bind(this, view);
 
         mPurpose = mPresenter.getIntentPurpose();
+        if (mPurpose == null || mPurpose.equals("")) {
+            mPurpose = "show";
+            mPresenter.setIntentPurpose(mPurpose);
+        }
         mMovieListView.setAdapter(mMovieListAdapter);
 
         return view;
@@ -118,7 +122,7 @@ public class MoviesListFragment extends Fragment implements
 
     @Override
     public void showMovieDetails(Movie movie) {
-        if (mPurpose.equals("")) {
+        if (mPurpose.equals("show")) {
             mNavigator.navigateWith(movie);
         }
     }
@@ -144,7 +148,12 @@ public class MoviesListFragment extends Fragment implements
     @OnItemClick(R.id.lv_movies)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Movie movie = mMovieListAdapter.getItem(position);
-        if (mPurpose.equals("delete") && !mPurpose.equals("")) {
+
+        if (mPurpose.equals("show")) {
+            mPresenter.selectMovie(movie);
+        }
+
+        if (mPurpose.equals("delete")) {
             AlertDialog.Builder mDeleteAlertBuilder = new AlertDialog.Builder(getContext());
             View mDeleteView = View.inflate(getContext(), R.layout.dialog_delete, null);
             TextView mWarningTextView = mDeleteView.findViewById(R.id.tv_delete_warning);
@@ -163,10 +172,6 @@ public class MoviesListFragment extends Fragment implements
 
             getYesClick(mYesButton, movie, deleteDialog);
             getNoClick(mNoButton,deleteDialog);
-
-
-        } else {
-            mPresenter.selectMovie(movie);
         }
     }
 

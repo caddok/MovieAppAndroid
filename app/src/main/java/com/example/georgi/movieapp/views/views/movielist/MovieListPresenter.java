@@ -48,20 +48,22 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
 
     @Override
     public void selectMovie(Movie movie) {
-        if (mPurpose != null) {
-            if (mPurpose.equals("redact")) {
+        switch (mPurpose) {
+            case "redact":
                 mView.getMovieToRedact(movie);
-            } else {
+                break;
+            case "delete":
                 deleteMovie(movie);
-            }
-        } else {
-            mView.showMovieDetails(movie);
+                break;
+            case "show":
+                mView.showMovieDetails(movie);
+                break;
         }
     }
 
     @Override
     public void filterMovies(String pattern) {
-        if(mPurpose == null) {
+        if (mPurpose == null) {
             mView.showLoading();
             Disposable disposable = Observable
                     .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
