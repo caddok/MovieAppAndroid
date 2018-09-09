@@ -127,6 +127,7 @@ public class MoviesListFragment extends Fragment implements
         }
     }
 
+
     @Override
     public void getMovieToRedact(Movie movie) {
         mNavigator.navigateWith(movie);
@@ -137,6 +138,11 @@ public class MoviesListFragment extends Fragment implements
         Toast.makeText(getContext(),
                 SHOW_DELETE_MESSAGE + movieName, Toast.LENGTH_LONG).show();
         mPresenter.loadMovies();
+    }
+
+    @Override
+    public void deleteAnotherOrGoBack(String intention) {
+        mNavigator.navigateWith(intention);
     }
 
     @OnTextChanged(R.id.et_search)
@@ -150,6 +156,10 @@ public class MoviesListFragment extends Fragment implements
         Movie movie = mMovieListAdapter.getItem(position);
 
         if (mPurpose.equals("show")) {
+            mPresenter.selectMovie(movie);
+        }
+
+        if(mPurpose.equals("redact")) {
             mPresenter.selectMovie(movie);
         }
 
@@ -175,16 +185,44 @@ public class MoviesListFragment extends Fragment implements
         }
     }
 
-    private void getNoClick(Button mNoButton, AlertDialog deleteDialog) {
-        mNoButton.setOnClickListener(v -> deleteDialog.hide());
-
-    }
-
     private void getYesClick(Button mYesButton, Movie movie, AlertDialog deleteDialog) {
         mYesButton.setOnClickListener(v -> {
             mPresenter.selectMovie(movie);
             deleteDialog.hide();
+            AlertDialog.Builder mDeleteAnotherDialogBuilder = new AlertDialog.Builder(getContext());
+            View mDeleteAnotherView = View.inflate(getContext()
+                    ,R.layout.dialog_delete_continued,null);
+            TextView mDeleteChangesTextView = mDeleteAnotherView.findViewById(R.id.tv_changes_delete);
+            TextView mDeleteThanksTextView = mDeleteAnotherView.findViewById(R.id.tv_thank_you_delete);
+            Button mDeleteAnotherButton = mDeleteAnotherView.findViewById(R.id.btn_delete_another);
+            Button mToListButton = mDeleteAnotherView.findViewById(R.id.btn_go_back_delete);
+
+            mDeleteAnotherDialogBuilder.setView(mDeleteAnotherView);
+            AlertDialog deleteAnotherDialog = mDeleteAnotherDialogBuilder.create();
+            deleteAnotherDialog.show();
+
+            getDeleteAnotherClick(mDeleteAnotherButton,deleteAnotherDialog);
+            getToListClick(mToListButton,deleteAnotherDialog);
         });
+    }
+
+    private void getToListClick(Button mToListButton, AlertDialog deleteAnotherDialog) {
+        mToListButton.setOnClickListener(v -> {
+            deleteAnotherDialog.hide();
+            mPresenter.deleteOrShowList("show");
+        });
+    }
+
+    private void getDeleteAnotherClick(Button mDeleteAnotherButton, AlertDialog deleteAnotherDialog) {
+        mDeleteAnotherButton.setOnClickListener(v -> {
+            deleteAnotherDialog.hide();
+            mPresenter.deleteOrShowList("delete");
+        });
+    }
+
+    private void getNoClick(Button mNoButton, AlertDialog deleteDialog) {
+        mNoButton.setOnClickListener(v -> deleteDialog.hide());
+
     }
 
     private void setDeleteMessage(TextView mDeleteTextView, String name) {

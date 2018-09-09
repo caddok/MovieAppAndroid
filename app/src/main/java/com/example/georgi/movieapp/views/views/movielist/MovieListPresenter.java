@@ -89,6 +89,11 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
         return mPurpose;
     }
 
+    @Override
+    public void deleteOrShowList(String intention) {
+        mView.deleteAnotherOrGoBack(intention);
+    }
+
     private void presentMoviesToView(List<Movie> movieList) {
         if (movieList.isEmpty()) {
             mView.showEmptyMovieList();

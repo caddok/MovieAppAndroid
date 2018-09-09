@@ -37,6 +37,7 @@
     <string name="dialog_redact_msg">Thank you for helping us maintaining clean and accurate database.You can: </string>
     <string name="redact_another_one">Redact another</string>
     <string name="btn_go_back">Go back</string>
+    <string name="delete_another">Delete Another</string>
 
 
     <string-array name="years_array">

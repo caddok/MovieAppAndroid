@@ -76,4 +76,18 @@ public class MoviesList extends BaseDrawer implements MoviesListContracts.Naviga
         }
         startActivity(intent);
     }
+
+    @Override
+    public void navigateWith(String intention) {
+        Intent intent = null;
+
+        if (intention.equals("delete")) {
+            intent = new Intent(this,MoviesList.class);
+            intent.putExtra("Purpose",intention);
+        } else if (intention.equals("show")) {
+            intent = new Intent(this,MoviesList.class);
+            intent.putExtra("Purpose",intention);
+        }
+        startActivity(intent);
+    }
 }
