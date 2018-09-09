@@ -153,6 +153,10 @@ public class MoviesListFragment extends Fragment implements
             mPresenter.selectMovie(movie);
         }
 
+        if(mPurpose.equals("redact")) {
+            mPresenter.selectMovie(movie);
+        }
+
         if (mPurpose.equals("delete")) {
             AlertDialog.Builder mDeleteAlertBuilder = new AlertDialog.Builder(getContext());
             View mDeleteView = View.inflate(getContext(), R.layout.dialog_delete, null);
