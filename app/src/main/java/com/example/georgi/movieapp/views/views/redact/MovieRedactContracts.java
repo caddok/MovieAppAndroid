@@ -39,6 +39,6 @@ public interface MovieRedactContracts {
     }
 
     interface Navigator {
-        void nagivateTo(String intention);
+        void navigateTo(String intention);
     }
 }

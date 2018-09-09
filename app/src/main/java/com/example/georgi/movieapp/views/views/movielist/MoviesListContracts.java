@@ -25,6 +25,8 @@ public interface MoviesListContracts {
         void getMovieToRedact(Movie movie);
 
         void showDeleteMessage(String movieName);
+
+        void deleteAnotherOrGoBack(String intention);
     }
     interface Presenter {
 
@@ -39,9 +41,13 @@ public interface MoviesListContracts {
         void setIntentPurpose(String purpose);
 
         String getIntentPurpose();
+
+        void deleteOrShowList(String intention);
     }
 
     interface Navigator{
         void navigateWith(Movie movie);
+
+        void navigateWith(String intention);
     }
 }

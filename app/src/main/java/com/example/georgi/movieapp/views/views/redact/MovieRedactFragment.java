@@ -157,7 +157,7 @@ public class MovieRedactFragment extends Fragment implements MovieRedactContract
 
     @Override
     public void navigateToNext(String intention) {
-        this.mNavigator.nagivateTo(intention);
+        this.mNavigator.navigateTo(intention);
     }
 
     @OnClick(R.id.btn_save_changes)
@@ -184,7 +184,7 @@ public class MovieRedactFragment extends Fragment implements MovieRedactContract
     private void getGoBackClick(Button mGoBackButton, AlertDialog redactDialog) {
         String intent = "";
         mGoBackButton.setOnClickListener(v -> {
-            this.mPresenter.allowNavigation("");
+            this.mPresenter.allowNavigation(intent);
             redactDialog.hide();
         });
     }

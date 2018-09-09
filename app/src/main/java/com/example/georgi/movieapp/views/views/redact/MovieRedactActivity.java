@@ -41,7 +41,7 @@ public class MovieRedactActivity extends DaggerAppCompatActivity implements Movi
     }
 
     @Override
-    public void nagivateTo(String intention) {
+    public void navigateTo(String intention) {
         Intent intent;
         switch (intention) {
             case MovieRedactOptionsFragment.INTENT_TO_REDACT:
