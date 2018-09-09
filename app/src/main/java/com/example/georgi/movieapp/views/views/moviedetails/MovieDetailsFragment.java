@@ -165,6 +165,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsContra
         Toast.makeText(getContext(),
                 SHOW_VOTE + movie.getName() + " !", Toast.LENGTH_SHORT)
                 .show();
+        mPresenter.loadMovie();
     }
 
     @Override
