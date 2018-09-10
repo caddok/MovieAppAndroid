@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +63,9 @@ public class MoviesListFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_movies_list, container, false);
 
         ButterKnife.bind(this, view);
+
+        // prevent the keyboard to show when activity starts
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         mPurpose = mPresenter.getIntentPurpose();
         if (mPurpose == null || mPurpose.equals("")) {
