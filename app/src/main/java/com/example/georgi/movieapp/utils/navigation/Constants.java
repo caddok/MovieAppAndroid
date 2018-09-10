@@ -1,7 +1,7 @@
 package com.example.georgi.movieapp.utils.navigation;
 
 public class Constants {
-    public static final String BASE_SERVER_URL = "http://192.168.0.119:9393/api";
+    public static final String BASE_SERVER_URL = "http://192.168.0.103:9393/api";
     //public static final String BASE_SERVER_URL_KRIS = "http://192.168.100.4:9393/api";
 
     public static final int MOVIE_NAME_MINIMUM_LENGTH = 2;

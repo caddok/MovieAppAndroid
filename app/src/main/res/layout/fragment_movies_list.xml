@@ -16,7 +16,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/edit_text_style_searching"
-            android:hint="    Enter movie name or genre"
+            android:hint="@string/enter_movie_name"
             android:inputType="text"
             android:textColorHint="@color/md_blue_grey_400" />
 

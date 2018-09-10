@@ -32,8 +32,7 @@ public class HttpMovieService implements MovieService {
         String patternToLower = pattern.toLowerCase();
 
         return getAllMovies().stream()
-                .filter(movie -> movie.getName().toLowerCase().contains(patternToLower)
-                || movie.getGenre().toLowerCase().contains(patternToLower))
+                .filter(movie -> movie.getName().toLowerCase().contains(patternToLower))
                 .collect(Collectors.toList());
     }
 

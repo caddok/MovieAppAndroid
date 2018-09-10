@@ -7,6 +7,7 @@
 
 
     <RelativeLayout
+        android:background="@drawable/redact_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,6 +18,7 @@
             android:visibility="gone" />
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/tv_redact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,6 +37,8 @@
             android:text="@string/redact_a_movie_btn" />
 
         <TextView
+            android:textStyle="bold"
+            android:textColor="@color/colorWhiteGrey"
             android:id="@+id/tv_or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,6 +49,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:textColor="@android:color/holo_red_dark"
             android:id="@+id/tv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

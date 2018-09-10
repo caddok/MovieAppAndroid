@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -28,6 +31,8 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
     @BindView(R.id.fab)
     FloatingActionButton mStartButton;
 
+    private Animation animFade;
+
 
     private MovieStartContracts.Presenter mPresenter;
     private MovieStartContracts.Navigator mNavigator;
@@ -46,6 +51,7 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
         View root =  inflater.inflate(R.layout.fragment_start_activity, container, false);
 
         ButterKnife.bind(this, root);
+
 
         return root;
     }
@@ -74,6 +80,6 @@ public class StartActivityFragment extends Fragment implements MovieStartContrac
 
     @OnClick(R.id.fab)
     public void onClick(){
-        this.mPresenter.allowNavigation();
+        mPresenter.allowNavigation();
     }
 }

@@ -38,6 +38,7 @@
     <string name="redact_another_one">Redact another</string>
     <string name="btn_go_back">Go back</string>
     <string name="delete_another">Delete Another</string>
+    <string name="enter_movie_name">Enter movie name</string>
 
 
     <string-array name="years_array">

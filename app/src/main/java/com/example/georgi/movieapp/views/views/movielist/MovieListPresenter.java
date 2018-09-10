@@ -63,20 +63,18 @@ public class MovieListPresenter implements MoviesListContracts.Presenter {
 
     @Override
     public void filterMovies(String pattern) {
-        if (mPurpose == null) {
-            mView.showLoading();
-            Disposable disposable = Observable
-                    .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
-                        List<Movie> movies = mMovieService.getFilteredMovies(pattern);
-                        emitter.onNext(movies);
-                        emitter.onComplete();
-                    })
-                    .subscribeOn(mProvider.background())
-                    .observeOn(mProvider.ui())
-                    .doFinally(mView::hideLoading)
-                    .subscribe(this::presentMoviesToView,
-                            error -> mView.showError(error));
-        }
+        mView.showLoading();
+        Disposable disposable = Observable
+                .create((ObservableOnSubscribe<List<Movie>>) emitter -> {
+                    List<Movie> movies = mMovieService.getFilteredMovies(pattern);
+                    emitter.onNext(movies);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mProvider.background())
+                .observeOn(mProvider.ui())
+                .doFinally(mView::hideLoading)
+                .subscribe(this::presentMoviesToView,
+                        error -> mView.showError(error));
     }
 
     @Override
